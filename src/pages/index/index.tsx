@@ -1,15 +1,13 @@
 import * as React from "react";
-import SearchBar from "weui-miniprogram/miniprogram_dist/searchbar/searchbar";
 import { MainLayout } from "@/layouts/MainLayout";
 import { View } from "@remax/wechat";
 import styles from "./index.css";
 import { CategoryButton } from "./components/CategoryButton";
-import MpRow from "@miniprogram-component-plus/row/miniprogram_dist";
-import MpCol from "@miniprogram-component-plus/col/miniprogram_dist";
 import { FilterRow } from "./components/FilterRow";
 import { PositionRow } from "./components/PositionRow";
 import { apis } from "@/api/api";
 import { DishItem } from "./components/DishItem";
+import { Col, Row, SearchBar } from "annar";
 
 const categories = [
   { image: "/images/categories/breakfast.png", text: "早餐" },
@@ -27,18 +25,18 @@ export default () => {
         <View className={styles.filters}>
           <SearchBar placeholder="今天想吃点什么"/>
           <PositionRow />
-          <MpRow>
+          <Row>
             {
               categories.map((c) => (
-                <MpCol span="4" key={c.text}>
+                <Col span={4} key={c.text}>
                   <CategoryButton
                     imageLink={c.image}
                     text={c.text}
                   />
-                </MpCol>
+                </Col>
               ))
             }
-          </MpRow>
+          </Row>
           <FilterRow />
         </View>
         <View className={styles["dishes-list"]}>

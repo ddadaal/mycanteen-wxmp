@@ -16,6 +16,9 @@
       ],
       "*": [
         "./typings/*"
+      ],
+      "@vant/weapp/*": [
+        "node_modules/@vant/weapp/dist/*"
       ]
     },
     "lib": [

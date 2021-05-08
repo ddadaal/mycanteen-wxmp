@@ -34,7 +34,7 @@ export const apis = {
         name: "番茄炒蛋",
         price: 3,
         canteen: Canteen.JiaYuan1,
-        rate: 32,
+        rate: 4,
         rateNumber: 1333,
         pictureUrl: "/images/dishitem/example.png",
       },

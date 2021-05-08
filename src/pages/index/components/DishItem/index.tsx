@@ -3,6 +3,7 @@ import { CanteenTexts } from "@/models/dish";
 import { View, Image, Text } from "@remax/wechat";
 import React from "react";
 import styles from "./index.css";
+import { Rate } from "annar";
 
 interface Props {
   dish: DishSearchResult;
@@ -26,7 +27,10 @@ export const DishItem: React.FC<Props> = ({ dish }) => {
           {CanteenTexts[dish.canteen]}
         </Text>
         <Text className={styles.rate}>
-          {dish.rate}
+          <Rate
+            value={dish.rate}
+            readOnly
+          />
         </Text>
         <Text className={styles.calorie}>
           约 {dish.calorie} kCal/100g

@@ -12,9 +12,8 @@
     "build": "cross-env NODE_ENV=production remax build -t wechat"
   },
   "dependencies": {
-    "@miniprogram-component-plus/col": "^1.0.0",
-    "@miniprogram-component-plus/row": "^1.0.0",
     "@vant/weapp": "^1.6.8",
+    "annar": "^2.1.0",
     "react": "^16.14.0",
     "remax": "^2.9.1",
     "weui-miniprogram": "^1.0.8"

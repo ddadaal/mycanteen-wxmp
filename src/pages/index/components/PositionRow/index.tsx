@@ -1,4 +1,5 @@
-import { View, Text, Button } from "@remax/wechat";
+import { View, Text } from "@remax/wechat";
+import { Button } from "annar";
 import React from "react";
 import styles from "./index.css";
 
@@ -11,9 +12,13 @@ export const PositionRow: React.FC = () => {
         </Text>
       </View>
       <View>
-        <View className={styles.recommendation}>
-          随机推荐
-        </View>
+        <Button
+          look="warning"
+        >
+          <Text>
+            随机
+          </Text>
+        </Button>
       </View>
     </View>
   );
