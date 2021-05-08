@@ -1,6 +1,8 @@
 .app {
-  text-align: center;
-  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .logo {
@@ -28,4 +30,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.tabbar {
 }

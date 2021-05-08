@@ -3,15 +3,28 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
-    "strict": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
     "esModuleInterop": true,
     "jsx": "preserve",
     "rootDir": "src",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "*": [
+        "./typings/*"
+      ]
     },
-    "lib": ["DOM", "ES2015"]
+    "lib": [
+      "DOM",
+      "ES2015"
+    ]
   },
-  "include": ["src/**/*", "typings/**/*"]
+  "include": [
+    "src/**/*",
+    "typings/**/*"
+  ]
 }

@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "react": "^16.14.0",
-    "remax": "^2.9.1"
+    "remax": "^2.9.1",
+    "weui-miniprogram": "^1.0.8"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
