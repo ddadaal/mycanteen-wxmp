@@ -6,11 +6,11 @@ import styles from "./index.css";
 const barList = [{
   "text": "主页",
   "iconPath": "/images/tabbar/home.png",
-  "selectedIconPath": "/images/tabbar/home.png",
+  "selectedIconPath": "/images/tabbar/home-selected.png",
 },{
   "text": "发布",
   "iconPath": "/images/tabbar/upload.png",
-  "selectedIconPath": "/images/tabbar/upload.png",
+  "selectedIconPath": "/images/tabbar/upload-selected.png",
 }, {
   "text": "个人信息",
   "iconPath": "/images/tabbar/profile.png",
