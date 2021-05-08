@@ -23,6 +23,14 @@
   flex-direction: column;
 }
 
+.rate :global(.anna-rate-value-star) {
+  margin-right: 8px;
+}
+
+.rate :glbal(.anna-rate) {
+  margin-bottom: 0;
+}
+
 /* .info1 > * {
   flex: 1;
 } */

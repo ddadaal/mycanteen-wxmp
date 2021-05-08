@@ -26,12 +26,12 @@ export const DishItem: React.FC<Props> = ({ dish }) => {
         <Text className={styles.canteen}>
           {CanteenTexts[dish.canteen]}
         </Text>
-        <Text className={styles.rate}>
+        <View className={styles.rate}>
           <Rate
             value={dish.rate}
             readOnly
           />
-        </Text>
+        </View>
         <Text className={styles.calorie}>
           约 {dish.calorie} kCal/100g
         </Text>
