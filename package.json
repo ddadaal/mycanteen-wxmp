@@ -1,0 +1,27 @@
+{
+  "name": "campus-dianping-wechat",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Remax Project With TypeScript",
+  "main": "index.js",
+  "keywords": [],
+  "author": "ddadaal <ddadaal@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "remax build -t wechat -w",
+    "build": "cross-env NODE_ENV=production remax build -t wechat"
+  },
+  "dependencies": {
+    "react": "^16.14.0",
+    "remax": "^2.9.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "@types/react": "^16.14.2",
+    "typescript": "^4.1.2",
+    "eslint": "^7.25.0",
+    "eslint-plugin-react": "^7.23.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0"
+  }
+}
