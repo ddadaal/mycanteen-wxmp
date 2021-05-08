@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.recommendation {
+  background-color: #F7B84B;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: white;
+}

@@ -1,0 +1,76 @@
+.container {
+  border-radius: 4px;
+  background-color: white;
+  display: flex;
+  margin: 16px;
+  padding: 16px 0;
+}
+
+.picture {
+  width: 30%;
+  padding: 0 16px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+
+.info1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .info1 > * {
+  flex: 1;
+} */
+
+.info1 .title {
+  font-weight: bold;
+  flex: 1;
+}
+
+.info1 .canteen {
+  color: #6F6F6F;
+  flex: 1;
+}
+
+.info1 .rate {
+  color: #6F6F6F;
+  flex: 1;
+}
+
+.info1 .calorie {
+  color: green;
+  flex: 1;
+}
+
+.info2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* .info2 > * {
+  flex: 1;
+} */
+
+.info2 .price {
+  color: #D59771;
+  flex: 1;
+}
+
+.info2 .placeholder {
+  flex: 1;
+}
+
+.info2 .rateNumber {
+  flex: 1;
+}
+
+.info2 .detail {
+  flex: 1;
+
+}

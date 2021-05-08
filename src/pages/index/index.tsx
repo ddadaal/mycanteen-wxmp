@@ -1,51 +1,55 @@
 import * as React from "react";
-import { View, Text, Image, Button, setTabBarItem, getUserInfo } from "remax/wechat"; 
+import SearchBar from "weui-miniprogram/miniprogram_dist/searchbar/searchbar";
+import { MainLayout } from "@/layouts/MainLayout";
+import { View } from "@remax/wechat";
 import styles from "./index.css";
-import TabBar from "weui-miniprogram/miniprogram_dist/tabbar/tabbar";
-import "weui-miniprogram/miniprogram_dist/weui-wxss/dist/style/weui.wxss";
+import { CategoryButton } from "./components/CategoryButton";
+import MpRow from "@miniprogram-component-plus/row/miniprogram_dist";
+import MpCol from "@miniprogram-component-plus/col/miniprogram_dist";
+import { FilterRow } from "./components/FilterRow";
+import { PositionRow } from "./components/PositionRow";
+import { apis } from "@/api/api";
+import { DishItem } from "./components/DishItem";
 
-const barList = [{
-  "text": "对话",
-  "iconPath": "icon.png",
-  "selectedIconPath": "../../images/tabbar_icon_chat_active.png",
-  dot: true,
-},
-{
-  "text": "设置",
-  "iconPath": "../../images/tabbar_icon_setting_default.png",
-  "selectedIconPath": "../../images/tabbar_icon_setting_active.png",
-  badge: "New",
-}];
+const categories = [
+  { image: "/images/categories/breakfast.png", text: "早餐" },
+  { image: "/images/categories/meal.png", text: "正餐" },
+  { image: "/images/categories/snack.png", text: "小吃" },
+  { image: "/images/categories/drinking.png", text: "饮品" },
+  { image: "/images/categories/dessert.png", text: "甜点" },
+  { image: "/images/categories/fruit.png", text: "水果" },
+];
 
 export default () => {
-
-  const onLogin = () => {
-    getUserInfo({ })
-      .then((e) => {
-        console.log(e);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
   return (
-    
-    <View className={styles.app}>
-      <View className={styles.header}>
-        <Image
-          src="https://gw.alipayobjects.com/mdn/rms_b5fcc5/afts/img/A*OGyZSI087zkAAAAAAAAAAABkARQnAQ"
-          className={styles.logo}
-        />
-        <View className={styles.text}>
-          编辑 <Text className={styles.path}>src/pages/index/index.js</Text>{" "}
-          开始
+    <MainLayout>
+      <View className={styles.content}>
+        <View className={styles.filters}>
+          <SearchBar placeholder="今天想吃点什么"/>
+          <PositionRow />
+          <MpRow>
+            {
+              categories.map((c) => (
+                <MpCol span="4" key={c.text}>
+                  <CategoryButton
+                    imageLink={c.image}
+                    text={c.text}
+                  />
+                </MpCol>
+              ))
+            }
+          </MpRow>
+          <FilterRow />
         </View>
-        <Button onClick={onLogin}>
-          申请登录
-        </Button>
+        <View className={styles["dishes-list"]}>
+          {apis.searchDishes().results.map((x) => (
+            <DishItem dish={x} key={x.calorie} />
+          ))}
+          {apis.searchDishes().results.map((x) => (
+            <DishItem dish={x} key={x.calorie} />
+          ))}
+        </View>
       </View>
-      <TabBar className={styles.tabbar} list={barList}/>
-    </View>
+    </MainLayout>
   );
 };
