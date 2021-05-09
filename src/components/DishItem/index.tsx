@@ -7,11 +7,12 @@ import { Rate } from "annar";
 
 interface Props {
   dish: DishSearchResult;
+  onClick?: () => void;
 }
 
-export const DishItem: React.FC<Props> = ({ dish }) => {
+export const DishItem: React.FC<Props> = ({ dish, children, onClick }) => {
   return (
-    <View className={styles.container}>
+    <View className={styles.container} onClick={onClick}>
       <View className={styles.picture}>
         <Image
           className={styles.image}
@@ -46,7 +47,7 @@ export const DishItem: React.FC<Props> = ({ dish }) => {
           {dish.rateNumber}人评分
         </Text>
         <Text className={styles.detail}>
-          查看详情
+          {children}
         </Text>
       </View>
     </View>

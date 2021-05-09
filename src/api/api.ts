@@ -66,4 +66,10 @@ export const apis = {
     return { results: range(0, 10).map(() => mockDish) };
 
   },
+  uploadExistingDish: async (body: {
+    id: number, description: string, pictureUrls: string[], userId: string,
+    rate: number, flavor?: Flavor, waitTime?: number, price?: number,
+  }) => {
+    // ignored
+  },
 };

@@ -1,23 +1,17 @@
 import * as React from "react";
 import { MainLayout } from "@/layouts/MainLayout";
-import { getUserInfo, View } from "@remax/wechat";
+import { getUserInfo, navigateTo, View } from "@remax/wechat";
 import styles from "./index.css";
 import { Button, Cell, Loading } from "annar";
 import { CanteenTexts } from "@/models/dish";
 import { apis, Canteen, DishSearchResult } from "@/api/api";
 import { useAsync } from "react-async";
 import { ScrollView } from "remax/wechat";
-import { DishItem } from "../index/components/DishItem";
+import { DishItem } from "../../components/DishItem";
+import { textObjectToArray } from "@/utils/textObjectToArray";
 
 
-const objectTextToOptions = (o: object) =>
-  Object.entries(o)
-    .reduce((prev, curr) => {
-      prev.push({ key: curr[0], text: curr[1] });
-      return prev;
-    }, [] as { key: string, text: string }[]);
-
-const canteenRange=  objectTextToOptions(CanteenTexts);
+const canteenRange=  textObjectToArray(CanteenTexts, "key", "text");
 
 const canteenKeys = Object.keys(CanteenTexts);
 
@@ -79,7 +73,15 @@ export const SearchPage: React.FC<Props> = () => {
                 : results
                   ? (
                     results.map((x) => (
-                      <DishItem key={x.id} dish={x} />
+                      <DishItem key={x.id} dish={x} onClick={() => {
+                        navigateTo({
+                          url:
+                          `/pages/upload/CommentExisting/index?dish=${JSON.stringify(x)}`,
+                        });
+                      }}
+                      >
+                        进入评价
+                      </DishItem>
                     ))
                   ) : undefined
             }

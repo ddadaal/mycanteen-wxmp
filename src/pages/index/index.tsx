@@ -5,7 +5,7 @@ import styles from "./index.css";
 import { FilterRow, PriceRange } from "./components/FilterRow";
 import { PositionRow } from "./components/PositionRow";
 import { apis, SearchDishQuery } from "@/api/api";
-import { DishItem } from "./components/DishItem";
+import { DishItem } from "../../components/DishItem";
 import { Col, Loading, Row, SearchBar } from "annar";
 import { Category, CategoryId, CategorySelector } from "@/components/CategorySelector";
 import { useAsync } from "react-async";
@@ -59,7 +59,9 @@ export default () => {
                 : data
                   ? (
                     data.map((x) => (
-                      <DishItem key={x.id} dish={x} />
+                      <DishItem key={x.id} dish={x}>
+                        查看详情
+                      </DishItem>
                     ))
                   ) : undefined
             }
