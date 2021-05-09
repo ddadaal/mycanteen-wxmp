@@ -73,10 +73,12 @@ const mockReview = (id: number) => ({
   ],
 });
 
+
+
 const apiRoot = "http://139.198.171.207:2543";
 
-const MOCK = true;
-// const MOCK = false;
+// const MOCK = true;
+const MOCK = false;
 
 const mockDish = (id: number) => ({
   dishId: id + "",
@@ -150,5 +152,12 @@ export const apis = {
 
     return JSON.parse(resp.data).data.url;
 
+  },
+  getDishById: async (id: string): Promise<DishSearchResult> => {
+    if (MOCK) {
+      return mockDish(+id);
+    } else {
+      return jsonRequest("GET", "/dish", { dishId: id }).then((x) => x.dish);
+    }
   },
 };

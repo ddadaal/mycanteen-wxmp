@@ -12,10 +12,14 @@ import { useLoading } from "@/utils/hooks";
 
 type PagelessQuery = Omit<SearchDishQuery, "page">;
 
-function navigateToDish(dish: DishSearchResult) {
+function navigateToDish(
+  dish: DishSearchResult,
+  updateDishHandler?: (d: DishSearchResult) => void,
+) {
   wx.navigateTo({
     url:
         "/pages/reviews/index?dish=" + JSON.stringify(dish),
+    events: { "updateDish": updateDishHandler },
   });
 }
 
@@ -104,7 +108,22 @@ export default () => {
               (results.length > 0)
                 ? results.map((x) => (
                   <DishItem key={x.dishId} dish={x}
-                    onClick={() => navigateToDish(x)}
+                    onClick={() => navigateToDish(
+                      x,
+                      (r) => {
+                        // change the corresponding Dish
+                        const d = results.findIndex((i) => i.dishId === r.dishId);
+                        if (d >=0) {
+                          console.log(`rewrite item in ${d}`);
+                          setResults([
+                            ...results.slice(0, d),
+                            r,
+                            ...results.slice(d+1),
+                          ]);
+                        }
+
+                      }
+                    )}
                   >
                         查看详情
                   </DishItem>
