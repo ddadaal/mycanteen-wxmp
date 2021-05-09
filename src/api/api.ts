@@ -74,8 +74,8 @@ const mockReview: Review = {
 
 const apiRoot = "http://139.198.171.207:2543";
 
-const mockDish = {
-  id: 1,
+const mockDish = (id: number) => ({
+  id: id,
   calorie: 32,
   name: "番茄炒蛋",
   price: 300,
@@ -83,7 +83,7 @@ const mockDish = {
   rate: 4,
   rateNumber: 1333,
   pictureUrl: "/images/dishitem/example.png",
-};
+});
 
 const jsonRequest = (method: "GET" | "POST", url: string, data?: object) =>
   request({ method, url: apiRoot + url, data })
@@ -93,7 +93,8 @@ export const apis = {
   searchDishes: async (query: SearchDishQuery) =>  {
     // return await jsonRequest("GET", "/dishes/getList");
 
-    return { dishesItemList: range(0, 10).map(() => mockDish) };
+    console.log(query);
+    return { dishesItemList: range(0, 10).map((i) => mockDish(query.page! *10 +i)) };
 
   },
   uploadExistingDish: async (body: {
