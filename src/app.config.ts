@@ -10,6 +10,7 @@ const config: AppConfig = {
     "pages/profile/index",
     "pages/calorieCalculator/index",
     "pages/calorieCalculator/DishSelector",
+    "pages/canteenStats/index",
   ],
   window: { navigationBarTitleText: "校园大众点评" },
   "tabBar": {
@@ -29,6 +30,11 @@ const config: AppConfig = {
     }, {
       "text": "热量计算",
       "pagePath": "pages/calorieCalculator/index",
+      "iconPath": "/images/tabbar/profile.png",
+      "selectedIconPath": "/images/tabbar/profile.png",
+    }, {
+      "text": "食堂人数",
+      "pagePath": "pages/canteenStats/index",
       "iconPath": "/images/tabbar/profile.png",
       "selectedIconPath": "/images/tabbar/profile.png",
     }],

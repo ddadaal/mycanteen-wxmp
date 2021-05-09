@@ -73,7 +73,7 @@ export const NewDishPage: React.FC = () => {
       <Form
         form={form}
         onFinish={submit}
-        initialValues={{ description: "", photo: [], canteen: query.canteen }}
+        initialValues={{ description: "ts", photo: [], canteen: query.canteen }}
       >
 
         <Form.Item name="category" rules={[{ required: true }]} required>

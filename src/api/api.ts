@@ -76,8 +76,8 @@ const mockReview = (id: number) => ({
 
 const apiRoot = "http://139.198.171.207:2543";
 
-// const MOCK = true;
-const MOCK = false;
+const MOCK = true;
+// const MOCK = false;
 
 const mockDish = (id: number) => ({
   dishId: id + "",
@@ -91,6 +91,18 @@ const mockDish = (id: number) => ({
   flavor: Flavor.Bitter,
   avgWaitTime: 14.3,
 } as DishSearchResult);
+
+export interface CanteenStat {
+  name: string;
+  seat: number;
+  ip: number;
+  warningMsg: string;
+}
+
+export interface CanteenStats {
+  time: string;
+  rows: CanteenStat[];
+}
 
 const jsonRequest = (method: "GET" | "POST", url: string, data?: object) =>
   request({ method, url: apiRoot + url, data })
@@ -158,6 +170,29 @@ export const apis = {
       return mockDish(+id);
     } else {
       return jsonRequest("GET", "/dishes/getOne", { dishId: id }).then((x) => x);
+    }
+  },
+  getCanteenStats: async (): Promise<CanteenStats> => {
+    if (MOCK) {
+      return {
+        time: "",
+        rows: [
+          {
+            "name": "燕南美食",
+            "seat": 280,
+            "ip": 123,
+            "warningMsg": "",
+          },
+          {
+            "name": "农园一层",
+            "seat": 782,
+            "ip": 61,
+            "warningMsg": "",
+          },
+        ],
+      };
+    } else {
+      return jsonRequest("GET", "/canteenStats");
     }
   },
 };

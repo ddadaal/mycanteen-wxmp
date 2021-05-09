@@ -1,0 +1,44 @@
+.content {
+  display: flex;
+  background-color: #F2F2F2;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+}
+
+.pagetitle {
+  padding-bottom: 32px;
+}
+
+.pagetitle:before {
+  background-color: #FFAE00;
+  content: "";
+  width: 16px;
+  height: 42px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 16px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.stat .titlerow {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat .titlerow .title {
+}
+
+.stat .titlerow .number {
+
+}
+
+.stat .progress {
+
+}
