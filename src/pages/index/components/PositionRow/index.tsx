@@ -6,13 +6,11 @@ import styles from "./index.css";
 export const PositionRow: React.FC = () => {
   return (
     <View className={styles.container}>
-      <View>
-        <Space size="small">
-          <Icon type="location" size={32} />
-          <Text>
-          北京大学
-          </Text>
-        </Space>
+      <View className={styles.position}>
+        <Icon type="location" size={32} />
+        <Text>
+          &nbsp;北京大学
+        </Text>
       </View>
       <View>
         <Button

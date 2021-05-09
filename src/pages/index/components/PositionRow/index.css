@@ -1,7 +1,12 @@
 .container {
   display: flex;
   justify-content: space-between;
-  padding: 16px 0;
+  padding: 0 16px;
+}
+
+.position {
+  display: flex;
+  align-items: center;
 }
 
 .recommendation {
