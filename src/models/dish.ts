@@ -20,7 +20,8 @@ export const CanteenTexts = {
   NongYuan3: "农园三层",
 };
 
-export const CanteenRanges = textObjectToArray(CanteenTexts, "key", "text");
+export const CanteenRanges: { key: keyof typeof CanteenTexts, text: string }[]
+= textObjectToArray(CanteenTexts, "key", "text") as any;
 
 export const CategoryTexts = {
   Breakfast: "早餐",

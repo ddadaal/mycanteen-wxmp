@@ -10,10 +10,7 @@ import { DishItem } from "../DishItem";
 import { textObjectToArray } from "@/utils/textObjectToArray";
 import { useLoading } from "@/utils/hooks";
 import classnames from "classnames";
-
-const canteenRange=  textObjectToArray(CanteenTexts, "key", "text");
-
-const canteenKeys = Object.keys(CanteenTexts);
+import { CanteenPicker } from "../CanteenPicker";
 
 interface Props {
   onSelect: (dish: DishSearchResult) => void;
@@ -75,14 +72,11 @@ export const DishSelector: React.FC<Props> = ({
   return (
     <View className={classnames(styles.content, className)}>
       <View className={styles.filter}>
-        <Cell.Picker
-          required
-          label="食堂"
+        <CanteenPicker
+          value={canteen}
+          onChange={(c) => setCanteen(c)}
           placeholder="请选择食堂"
-          arrow
-          range={canteenRange}
-          value={canteen ? canteenKeys.indexOf(canteen) : undefined}
-          onChange={(i: number) => setCanteen(canteenKeys[i] as Canteen)}
+          label="食堂"
         />
 
         <Cell.Input

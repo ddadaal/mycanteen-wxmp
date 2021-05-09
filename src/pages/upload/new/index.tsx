@@ -6,6 +6,7 @@ import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
 import { CanteenRanges, CategoryId, FlavorRanges } from "@/models/dish";
 import { apis, Canteen, Flavor } from "@/api/api";
 import { CategorySelectorWrapper } from "./CategorySelectorWrapper";
+import { CanteenPicker } from "@/components/CanteenPicker";
 
 interface FormInfo {
   canteen: Canteen;
@@ -94,10 +95,7 @@ export const NewDishPage: React.FC = () => {
           required
           rules={[{ required: true }]}
         >
-          <Cell.Picker
-            placeholder="菜品所在的食堂"
-            range={CanteenRanges}
-          />
+          <CanteenPicker placeholder="菜品所在的食堂" />
         </Form.Item>
 
         <Form.Item
