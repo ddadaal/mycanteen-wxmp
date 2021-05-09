@@ -18,7 +18,7 @@ export default () => {
   const [query, setQuery] = React.useState({ page: 1 } as SearchDishQuery);
 
   const promiseFn = React.useCallback(() => {
-    return apis.searchDishes(query).then((x) => x.results);
+    return apis.searchDishes(query).then((x) => x.dishesItemList);
   }, [query]);
 
   const { data, isLoading } = useAsync({ promiseFn });

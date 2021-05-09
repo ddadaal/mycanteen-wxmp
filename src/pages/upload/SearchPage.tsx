@@ -32,7 +32,7 @@ export const SearchPage: React.FC<Props> = () => {
       setSearched(true);
       setLoading(true);
       return apis.searchDishes({ name: text, canteen: canteen })
-        .then((x) => setResults(x.results))
+        .then((x) => setResults(x.dishesItemList))
         .finally(() => setLoading(false));
     }
   };

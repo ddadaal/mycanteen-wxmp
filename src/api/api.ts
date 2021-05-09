@@ -59,11 +59,15 @@ const mockDish = {
   pictureUrl: "/images/dishitem/example.png",
 };
 
+const jsonRequest = (method: "GET" | "POST", url: string, data?: object) =>
+  request({ method, url: apiRoot + url, data })
+    .then((x) => x.data.results);
+
 export const apis = {
   searchDishes: async (query: SearchDishQuery) =>  {
-    // return await request({ url: apiRoot + "/dishes/getList" });
+    // return await jsonRequest("GET", "/dishes/getList");
 
-    return { results: range(0, 10).map(() => mockDish) };
+    return { dishesItemList: range(0, 10).map(() => mockDish) };
 
   },
   uploadExistingDish: async (body: {
@@ -71,5 +75,6 @@ export const apis = {
     rate: number, flavor?: Flavor, waitTime?: number, price?: number,
   }) => {
     // ignored
+    await jsonRequest("POST", "/dish/existing", body);
   },
 };
