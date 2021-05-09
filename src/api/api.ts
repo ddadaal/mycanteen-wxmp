@@ -76,6 +76,7 @@ const mockReview = (id: number) => ({
 const apiRoot = "http://139.198.171.207:2543";
 
 const MOCK = true;
+// const MOCK = false;
 
 const mockDish = (id: number) => ({
   dishId: id + "",

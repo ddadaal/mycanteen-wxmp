@@ -19,9 +19,13 @@ interface Props {
   onSelect: (dish: DishSearchResult) => void;
   onSearch?: () => void;
   className?: string;
+  refreshToken?: boolean;
 }
 
-export const DishSelector: React.FC<Props> = ({ onSelect, onSearch, className }) => {
+export const DishSelector: React.FC<Props> = ({
+  onSelect,
+  onSearch, className, refreshToken,
+}) => {
 
   const page = React.useRef(1);
   const hasMore = React.useRef(true);
@@ -66,7 +70,7 @@ export const DishSelector: React.FC<Props> = ({ onSelect, onSearch, className })
 
   React.useEffect(() => {
     update();
-  }, [canteen, text]);
+  }, [canteen, text, refreshToken]);
 
   return (
     <View className={classnames(styles.content, className)}>
