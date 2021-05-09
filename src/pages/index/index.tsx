@@ -34,7 +34,7 @@ export default () => {
     setResults([]);
     page.current = 1;
     const resp = await apis.searchDishes({ ...query, page: page.current });
-    setResults(resp.dishesItemList);
+    setResults(resp);
     setLoading(false);
   };
 
@@ -45,10 +45,10 @@ export default () => {
     setLoading(true);
     page.current++;
     const resp = await apis.searchDishes({ ...query, page: page.current });
-    if (resp.dishesItemList.length === 0) {
+    if (resp.length === 0) {
       hasMore.current = false;
     } else {
-      setResults([...results, ...resp.dishesItemList]);
+      setResults([...results, ...resp]);
     }
     setLoading(false);
   };
@@ -103,7 +103,7 @@ export default () => {
             {
               (results.length > 0)
                 ? results.map((x) => (
-                  <DishItem key={x.id} dish={x}
+                  <DishItem key={x.dishId} dish={x}
                     onClick={() => navigateToDish(x)}
                   >
                         查看详情

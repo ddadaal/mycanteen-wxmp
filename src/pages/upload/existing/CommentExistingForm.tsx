@@ -1,8 +1,10 @@
 import { apis, Flavor } from "@/api/api";
 import { FlavorRanges } from "@/models/dish";
+import { usePageInstance } from "remax";
 import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
 import React, { useRef, useState } from "react";
 import { View } from "remax/wechat";
+import { useEventChannel } from "@/utils/useEventChannel";
 
 interface FormInfo {
   description: string;
@@ -15,7 +17,7 @@ interface FormInfo {
 
 interface Props {
   userId: string;
-  dishId: number;
+  dishId: string;
 }
 
 export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
@@ -25,6 +27,8 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
   const [loading, setLoading] = useState(false);
 
   const [form] = Form.useForm();
+
+  const eventChannel = useEventChannel();
 
   const submit = async () => {
     form.validateFields();
@@ -42,7 +46,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
 
       await apis.uploadExistingDish({
         description: values.description,
-        id: +(dishId!),
+        dishId: dishId,
         pictureUrls: photoUrls,
         rate: values.rate,
         userId: userId!,
@@ -52,6 +56,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
       });
 
       ling.current!.success("提交成功！", undefined, () => {
+        eventChannel.emit("submitCompleted", {});
         wx.navigateBack();
       });
 

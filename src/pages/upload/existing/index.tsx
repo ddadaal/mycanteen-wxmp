@@ -12,10 +12,12 @@ export const CommentExisting: React.FC = () => {
 
   const dish = JSON.parse(query.dish!) as DishSearchResult;
 
+  console.log(dish);
+
   return (
     <View className={styles.content}>
       <DishItem dish={dish} />
-      <CommentExistingForm dishId={dish.id} userId={query.userId!}  />
+      <CommentExistingForm dishId={dish.dishId} userId={query.userId!}  />
     </View>
   );
 };

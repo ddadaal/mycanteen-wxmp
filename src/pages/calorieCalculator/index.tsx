@@ -39,7 +39,7 @@ export const CalorieCalculator: React.FC = () => {
         <View className={styles.list}>
           {
             dishes.map((x) => (
-              <DishItem dish={x} key={x.id} />
+              <DishItem dish={x} key={x.dishId} />
             ))
           }
         </View>

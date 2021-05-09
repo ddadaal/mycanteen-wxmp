@@ -22,7 +22,7 @@ export enum Canteen {
 
 
 export interface DishSearchResult {
-  id: number;
+  dishId: string;
   "name": string,
   "price": number,
   "canteen": Canteen,
@@ -47,7 +47,7 @@ export interface SearchDishQuery {
 }
 
 export interface Review {
-  id: number;
+  id: string;
   time: string; // ISO格式
 userId: string;
 rate: number;
@@ -60,7 +60,7 @@ pictureUrls: string[];
 }
 
 const mockReview = (id: number) => ({
-  id,
+  id: id+"",
   time: "2021-05-09T04:29:28.811Z",
   userId: "ddadaal",
   rate: 4,
@@ -75,8 +75,10 @@ const mockReview = (id: number) => ({
 
 const apiRoot = "http://139.198.171.207:2543";
 
+const MOCK = true;
+
 const mockDish = (id: number) => ({
-  id: id,
+  dishId: id + "",
   calorie: 32,
   name: "番茄炒蛋",
   price: 300,
@@ -93,19 +95,21 @@ const jsonRequest = (method: "GET" | "POST", url: string, data?: object) =>
     .then((x) => x.data.results);
 
 export const apis = {
-  searchDishes: async (query: SearchDishQuery) =>  {
-    // return await jsonRequest("GET", "/dishes/getList");
-
-    console.log(query);
-    return { dishesItemList: range(0, 10).map((i) => mockDish(query.page! *10 +i)) };
+  searchDishes: async (query: SearchDishQuery): Promise<DishSearchResult[]> =>  {
+    if (MOCK){
+      return range(0, 10).map((i) => mockDish(query.page! *10 +i));
+    } else {
+      return await jsonRequest("GET", "/dishes/getList", query);
+    }
 
   },
   uploadExistingDish: async (body: {
-    id: number, description: string, pictureUrls: string[], userId: string,
+    dishId: string, description: string, pictureUrls: string[], userId: string,
     rate: number, flavor?: Flavor, waitTime?: number, price?: number,
   }) => {
-    // ignored
-    await jsonRequest("POST", "/dish/existing", body);
+    if (!MOCK) {
+      await jsonRequest("POST", "/dish/existing", body);
+    }
   },
   uploadNewDish: async (body: {
     description: string;
@@ -119,15 +123,20 @@ export const apis = {
     canteen: Canteen
     userId: string;
   }) => {
-    await jsonRequest("POST", "/dish/new", body);
+    if (!MOCK) {
+      await jsonRequest("POST", "/dish/new", body);
+    }
   },
   getUserReviews: async (query: {
-    dishId: number;
+    dishId: string;
     page?: number;
-  }) => {
-    // return jsonRequest("GET", "/reviews/getList", query);
+  }): Promise<Review[]> => {
+    if (MOCK) {
+      return range(0, 10).map((i) => mockReview(query.page! * 10 + i));
+    } else {
+      return jsonRequest("GET", "/reviews/getList", query).then((x) => x.reviewItemList);
+    }
 
-    return { results: range(0, 10).map((i) => mockReview(query.page! * 10 + i)) };
   },
   /** 返回地址 */
   uploadFile: async (filePath: string): Promise<string> => {
@@ -137,8 +146,6 @@ export const apis = {
       filePath,
       name: "image",
     });
-
-    console.log(resp);
 
     return JSON.parse(resp.data).data.url;
 

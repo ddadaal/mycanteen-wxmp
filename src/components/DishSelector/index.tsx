@@ -40,7 +40,7 @@ export const DishSelector: React.FC<Props> = ({ onSelect, onSearch, className })
       onSearch?.();
       page.current = 1;
       return apis.searchDishes({ name: text, canteen: canteen })
-        .then((x) => setResults(x.dishesItemList))
+        .then((x) => setResults(x))
         .finally(() => setLoading(false));
     }
   };
@@ -56,10 +56,10 @@ export const DishSelector: React.FC<Props> = ({ onSelect, onSearch, className })
       canteen: canteen,
       page: page.current,
     });
-    if (resp.dishesItemList.length === 0) {
+    if (resp.length === 0) {
       hasMore.current = false;
     } else {
-      setResults([...results, ...resp.dishesItemList]);
+      setResults([...results, ...resp]);
     }
     setLoading(false);
   };
@@ -101,7 +101,7 @@ export const DishSelector: React.FC<Props> = ({ onSelect, onSearch, className })
             (results.length > 0)
               ? (
                 results.map((x) => (
-                  <DishItem key={x.id} dish={x} onClick={() => {
+                  <DishItem key={x.dishId} dish={x} onClick={() => {
                     onSelect(x);
                   }}
                   >

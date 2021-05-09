@@ -16,6 +16,8 @@ export const ReviewsPage: React.FC = () => {
 
   const dish = JSON.parse(query.dish!) as DishSearchResult;
 
+  console.log(dish);
+
   const page = useRef(1);
   const [results, setResults] = useState<Review[]>([]);
   const [loading, setLoading] = useLoading();
@@ -23,26 +25,31 @@ export const ReviewsPage: React.FC = () => {
   const onMore = async () => {
     setLoading(true);
     page.current++;
-    const resp = await apis.getUserReviews({ dishId: dish.id, page: page.current });
-    setResults([...results, ...resp.results]);
+    const resp = await apis.getUserReviews({ dishId: dish.dishId, page: page.current });
+    setResults([...results, ...resp]);
     setLoading(false);
   };
 
-  usePageEvent("onReachBottom", () => {
-    onMore();
-  });
+  const reload = async () => {
+    setLoading(true);
+    page.current = 0 ;
+    const resp = await apis.getUserReviews({ dishId: dish.dishId, page: page.current });
+    setResults(resp);
+    setLoading(false);
+  };
+
 
   useEffect(() => {
     setLoading(true);
     setResults([]);
-    apis.getUserReviews({ dishId: dish.id, page: page.current })
+    apis.getUserReviews({ dishId: dish.dishId, page: page.current })
       .then((r) => {
-        setResults([...results, ...r.results]);
+        setResults([...results, ...r]);
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [dish.id]);
+  }, [dish.dishId]);
 
   return (
     <View className={styles.content}>
@@ -112,6 +119,11 @@ export const ReviewsPage: React.FC = () => {
                   url:
                   // eslint-disable-next-line max-len
                   `/pages/upload/existing/index?userId=${x.nickName}&dish=${query.dish}`,
+                  events: {
+                    "submitCompleted": () => {
+                      reload();
+                    },
+                  },
                 });
               });
           }}

@@ -36,7 +36,7 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
       setLoading(true);
       page.current = 1;
       return apis.searchDishes({ name: text, canteen: canteen })
-        .then((x) => setResults(x.dishesItemList))
+        .then((x) => setResults(x))
         .finally(() => setLoading(false));
     }
   };
