@@ -41,7 +41,6 @@ export interface SearchDishQuery {
   minPrice?: number;
   maxPrice?: number;
   flavors?: Flavor[];
-  ingredients?: string[];
   maxCalorie?: number;
   waitTime?: number;
   page?: number;
@@ -126,7 +125,7 @@ export const apis = {
     dishId: number;
     page?: number;
   }) => {
-    // return jsonRequest("GET", "/reviews", query);
+    // return jsonRequest("GET", "/reviews/getList", query);
 
     return { results: range(0, 10).map((i) => mockReview(query.page! * 10 + i)) };
   },
