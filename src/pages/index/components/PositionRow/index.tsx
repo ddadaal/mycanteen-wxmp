@@ -4,10 +4,11 @@ import React from "react";
 import styles from "./index.css";
 
 interface Props {
+  randomEnabled: boolean;
   onRandomClicked: () => void;
 }
 
-export const PositionRow: React.FC<Props> = ({ onRandomClicked }) => {
+export const PositionRow: React.FC<Props> = ({ onRandomClicked, randomEnabled }) => {
   return (
     <View className={styles.container}>
       <View className={styles.position}>
@@ -20,6 +21,7 @@ export const PositionRow: React.FC<Props> = ({ onRandomClicked }) => {
         <Button
           look="warning"
           onTap={onRandomClicked}
+          disabled={!randomEnabled}
         >
           <Text>
             Surprise Me

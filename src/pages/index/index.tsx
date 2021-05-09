@@ -86,7 +86,10 @@ export default () => {
             selected={query.category}
             onSelect={(c) => update({ ...query, category: c.id })}
           />
-          <PositionRow onRandomClicked={onRandomClicked} />
+          <PositionRow
+            onRandomClicked={onRandomClicked}
+            randomEnabled={results.length>0}
+          />
           <FilterRow
             canteen={query.canteen}
             onCanteenChange={(c) => update({ ...query, canteen: c })}
