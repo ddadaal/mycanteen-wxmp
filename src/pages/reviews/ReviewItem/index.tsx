@@ -1,6 +1,6 @@
 import { Review } from "@/api/api";
 import { Categories, CategoryTexts, FlavorTexts } from "@/models/dish";
-import { Rate } from "annar";
+import { ImageUpload, Rate } from "annar";
 import React, { useCallback, useState } from "react";
 import { View, Image } from "remax/wechat";
 import styles from "./index.css";
@@ -43,6 +43,18 @@ export const ReviewItem: React.FC<Props> = ({ review }) => {
         <View className={styles.description}>
           {review.description}
         </View>
+        {
+          review.pictureUrls.length > 0
+            ? (
+              <View className={styles.pictures}>
+                <ImageUpload
+                  disabled
+                  deletable={false}
+                  files={review.pictureUrls.map((x, i) => ({ key: i+"", url: x }))}
+                />
+              </View>
+            ) : undefined
+        }
         <View className={styles.rate}>
           <Rate
             value={review.rate}

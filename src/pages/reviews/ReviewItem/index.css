@@ -33,6 +33,10 @@
 
 }
 
+.info .pictures :global(.anna-image-upload-add) {
+  display: none;
+}
+
 .info .description {
   padding: 8px 0;
   color: #6F6F6F;

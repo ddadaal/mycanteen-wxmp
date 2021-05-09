@@ -67,7 +67,9 @@ const mockReview: Review = {
   flavor: Flavor.Bitter,
   price: 800,
   category: Categories["0"].id,
-  pictureUrls: [],
+  pictureUrls: [
+    "https://p6-tt.byteimg.com/origin/pgc-image/47ba476b431f4430871ea54c92f807f3.png",
+  ],
 };
 
 const apiRoot = "http://139.198.171.207:2543";
