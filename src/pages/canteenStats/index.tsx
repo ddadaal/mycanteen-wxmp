@@ -1,5 +1,7 @@
-import { apis, CanteenStats, DishSearchResult } from "@/api/api";
+import { apis, Canteen, CanteenStats, DishSearchResult } from "@/api/api";
 import { DishItem } from "@/components/DishItem";
+import { CanteenTexts } from "@/models/dish";
+import { globals, setGlobal } from "@/utils/globals";
 import { useLoading } from "@/utils/hooks";
 import { View, Text } from "@remax/wechat";
 import { Button, Loading, Progress } from "annar";
@@ -31,27 +33,37 @@ export const CanteenStatsPage: React.FC = () => {
       {
         stats
           ? (
-            stats.rows.map((x) => (
-              <View key={x.name} className={styles.stat}>
-                <View className={styles.titlerow}>
-                  <View className={styles.title}>
-                    <Text>
-                      {x.name}
-                    </Text>
+            stats.rows.map((x) => {
+              const canteen = Object.keys(CanteenTexts)
+                .find((i) => CanteenTexts[i] === x.name);
+
+              return (
+                <View key={x.name} className={styles.stat}
+                  onClick={() => {
+                    setGlobal("indexPageCanteen", canteen);
+                    wx.switchTab({ url: "/pages/index/index" });
+                  }}
+                >
+                  <View className={styles.titlerow}>
+                    <View className={styles.title}>
+                      <Text>
+                        {x.name}
+                      </Text>
+                    </View>
+                    <View className={styles.number}>
+                      <Text>
+                        {x.ip} / {x.seat}
+                      </Text>
+                    </View>
                   </View>
-                  <View className={styles.number}>
-                    <Text>
-                      {x.ip} / {x.seat}
-                    </Text>
+                  <View className={styles.progress}>
+                    <Progress
+                      percent={x.ip / x.seat * 100}
+                    />
                   </View>
                 </View>
-                <View className={styles.progress}>
-                  <Progress
-                    percent={x.ip / x.seat * 100}
-                  />
-                </View>
-              </View>
-            ))
+              );
+            })
           ) : loading
             ? <Loading />
             : undefined

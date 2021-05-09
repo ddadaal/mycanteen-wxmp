@@ -9,6 +9,7 @@ import { DishItem } from "../../components/DishItem";
 import { Col, Loading, Result, Row, SearchBar } from "annar";
 import { CategorySelector } from "@/components/CategorySelector";
 import { useLoading } from "@/utils/hooks";
+import { globals, readAndClearGlobal } from "@/utils/globals";
 
 type PagelessQuery = Omit<SearchDishQuery, "page">;
 
@@ -26,7 +27,8 @@ function navigateToDish(
 export default () => {
 
   const page = useRef(1);
-  const [query, setQuery] = React.useState({} as PagelessQuery);
+  const [query, setQuery] =
+  React.useState({ canteen: readAndClearGlobal("indexPageCanteen") } as PagelessQuery);
 
   const [loading, setLoading] = useLoading();
   const [results, setResults] = React.useState([] as DishSearchResult[]);
