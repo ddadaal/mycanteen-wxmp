@@ -100,6 +100,7 @@ export const CommentExistingForm: React.FC = () => {
           label="评分"
           name="rate"
           rules={[{ required: true }]}
+          required
         >
           <Rate />
         </Form.Item>
