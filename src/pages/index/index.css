@@ -10,3 +10,8 @@
   border-bottom-left-radius: 32px;
   border-bottom-right-radius: 32px;
 }
+
+.dishes-list {
+  flex: 1;
+  overflow: scroll;
+}

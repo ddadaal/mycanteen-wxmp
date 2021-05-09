@@ -1,4 +1,5 @@
 import type { CategoryId } from "@/components/CategorySelector";
+import { range } from "@/utils/range";
 import { request } from "@remax/wechat";
 
 export enum Flavor {
@@ -46,25 +47,22 @@ const callCount = 0;
 
 const apiRoot = "http://139.198.171.207:2543";
 
+const mockDish = {
+  id: 1,
+  calorie: 32,
+  name: "番茄炒蛋",
+  price: 3,
+  canteen: Canteen.JiaYuan1,
+  rate: 4,
+  rateNumber: 1333,
+  pictureUrl: "/images/dishitem/example.png",
+};
+
 export const apis = {
   searchDishes: async (query: SearchDishQuery) =>  {
     // return await request({ url: apiRoot + "/dishes/getList" });
 
-    return {
-      results: [
-        {
-          id: 1,
-          calorie: 32,
-          name: "番茄炒蛋",
-          price: 3,
-          canteen: Canteen.JiaYuan1,
-          rate: 4,
-          rateNumber: 1333,
-          pictureUrl: "/images/dishitem/example.png",
-        },
-      ],
-    };
-
+    return { results: range(0, 10).map(() => mockDish) };
 
   },
 };

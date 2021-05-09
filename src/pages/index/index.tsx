@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MainLayout } from "@/layouts/MainLayout";
-import { View } from "@remax/wechat";
+import { ScrollView, View } from "@remax/wechat";
 import styles from "./index.css";
 import { FilterRow } from "./components/FilterRow";
 import { PositionRow } from "./components/PositionRow";
@@ -40,16 +40,18 @@ export default () => {
           <FilterRow />
         </View>
         <View className={styles["dishes-list"]}>
-          {
-            isLoading
-              ? <Loading />
-              : data
-                ? (
-                  data.map((x) => (
-                    <DishItem key={x.id} dish={x} />
-                  ))
-                ) : undefined
-          }
+          <ScrollView style={{ height: "100%" }} scrollY>
+            {
+              isLoading
+                ? <Loading />
+                : data
+                  ? (
+                    data.map((x) => (
+                      <DishItem key={x.id} dish={x} />
+                    ))
+                  ) : undefined
+            }
+          </ScrollView>
         </View>
       </View>
     </MainLayout>
