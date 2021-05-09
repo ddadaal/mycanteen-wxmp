@@ -1,3 +1,4 @@
+import { DishSearchResult } from "@/api/api";
 import { DishItem } from "@/components/DishItem";
 import { getUserProfile } from "@/utils/getUserProfile";
 import { View, Text, onWindowResize } from "@remax/wechat";
@@ -6,11 +7,12 @@ import React from "react";
 import { useQuery } from "remax";
 
 import styles from "./index.css";
+import { ReviewList } from "./ReviewList";
 
 export const ReviewsPage: React.FC = () => {
   const query = useQuery();
 
-  const dish = JSON.parse(query.dish!);
+  const dish = JSON.parse(query.dish!) as DishSearchResult;
 
   return (
     <View className={styles.content}>
@@ -21,7 +23,7 @@ export const ReviewsPage: React.FC = () => {
         </Text>
       </View>
       <View className={styles.list}>
-
+        <ReviewList dishId={dish.id} />
       </View>
       <View className={styles.comment}>
         <Button

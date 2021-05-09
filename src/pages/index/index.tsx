@@ -7,7 +7,7 @@ import { PositionRow } from "./components/PositionRow";
 import { apis, SearchDishQuery } from "@/api/api";
 import { DishItem } from "../../components/DishItem";
 import { Col, Loading, Row, SearchBar } from "annar";
-import { Category, CategoryId, CategorySelector } from "@/components/CategorySelector";
+import { CategorySelector } from "@/components/CategorySelector";
 import { useAsync } from "react-async";
 import RecycleView from "miniprogram-recycle-view/miniprogram_dist/recycle-view";
 import RecycleItem from "miniprogram-recycle-view/miniprogram_dist/recycle-item";

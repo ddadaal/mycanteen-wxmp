@@ -1,3 +1,5 @@
+import { textObjectToArray } from "@/utils/textObjectToArray";
+
 export const FlavorTexts = {
   Spicy : "辣",
   Sour: "酸",
@@ -15,3 +17,21 @@ export const CanteenTexts = {
   NongYuan2: "农园二层",
   NongYuan3: "农园三层",
 };
+
+export const CategoryTexts = {
+  BreakPoint: "早餐",
+  Meal: "正餐",
+  Snack: "小吃",
+  Drinking: "水吧",
+  Dessert: "甜点",
+  Fruit: "水果",
+};
+
+export const Categories = textObjectToArray(CategoryTexts, "id", "text") as Category[];
+
+export type CategoryId = keyof typeof CategoryTexts;
+
+export type Category = {
+  id: CategoryId;
+  text: string;
+}

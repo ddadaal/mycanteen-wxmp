@@ -1,0 +1,48 @@
+.container {
+  border-radius: 4px;
+  background-color: white;
+  display: flex;
+  margin: 16px;
+  padding: 16px 0;
+}
+
+.picture {
+  width: 15%;
+  padding: 0 16px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.info {
+  flex: 1;
+}
+
+.info .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info .title .text {
+  font-weight: bold;
+}
+
+.info .title .date {
+
+}
+
+.info .description {
+  padding: 8px 0;
+  color: #6F6F6F;
+  flex: 1;
+}
+
+.info .rate {
+  flex: 1;
+}
+
+.info .misc {
+  flex: 0.5;
+}

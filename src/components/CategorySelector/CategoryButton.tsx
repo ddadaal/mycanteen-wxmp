@@ -1,7 +1,7 @@
+import { Category } from "@/models/dish";
 import { View, Image } from "@remax/wechat";
 import classnames from "classnames";
 import React from "react";
-import type { Category } from ".";
 import styles from "./index.css";
 
 const toImageUrl = (id: string) =>

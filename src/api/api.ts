@@ -1,4 +1,4 @@
-import type { CategoryId } from "@/components/CategorySelector";
+import { Categories, CategoryId } from "@/models/dish";
 import { range } from "@/utils/range";
 import { request } from "@remax/wechat";
 
@@ -44,7 +44,30 @@ export interface SearchDishQuery {
   page?: number;
 }
 
-const callCount = 0;
+export interface Review {
+  id: number;
+  time: string; // ISO格式
+userId: string;
+rate: number;
+description: string;
+flavor?: Flavor;
+waitTime?: number;
+price?: number;
+category: CategoryId;
+pictureUrls: string[];
+}
+
+const mockReview: Review = {
+  id: 1,
+  time: "2021-05-09T04:29:28.811Z",
+  userId: "ddadaal",
+  rate: 4,
+  description: "这菜好啊！",
+  flavor: Flavor.Bitter,
+  price: 800,
+  category: Categories["0"].id,
+  pictureUrls: [],
+};
 
 const apiRoot = "http://139.198.171.207:2543";
 
@@ -76,5 +99,13 @@ export const apis = {
   }) => {
     // ignored
     await jsonRequest("POST", "/dish/existing", body);
+  },
+  getUserReviews: async (query: {
+    dishId: number;
+    page?: number;
+  }) => {
+    // return jsonRequest("GET", "/reviews", query);
+
+    return { results: range(0, 10).map(() => mockReview) };
   },
 };
