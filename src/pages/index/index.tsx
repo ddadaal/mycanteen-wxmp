@@ -31,6 +31,7 @@ export default () => {
             value={query.name}
             placeholder="今天想吃点什么"
             onInput={(v) => setQuery({ ...query, name: v })}
+            onClear={() => setQuery({ ...query, name: "" })}
           />
           <CategorySelector
             selected={query.category}
