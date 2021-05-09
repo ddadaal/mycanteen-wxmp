@@ -124,6 +124,7 @@ export const apis = {
     category: CategoryId;
     canteen: Canteen
     userId: string;
+    calorie?: number;
   }) => {
     if (!MOCK) {
       await jsonRequest("POST", "/dish/new", body);

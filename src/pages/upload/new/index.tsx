@@ -17,6 +17,7 @@ interface FormInfo {
   price?: number;
   flavor?: Flavor;
   waitTime?: number;
+  calorie?: number;
   rate: number;
 }
 
@@ -56,6 +57,7 @@ export const NewDishPage: React.FC = () => {
         waitTime: values.waitTime,
         pictureUrls: photoUrls,
         userId: query.userId!,
+        calorie: values.calorie,
       });
 
       ling.current!.success("提交成功！");
@@ -104,6 +106,17 @@ export const NewDishPage: React.FC = () => {
         >
           <Cell.Input
             placeholder="菜名，可不填"
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="热量"
+          name="calorie"
+        >
+          <Cell.Input
+            placeholder="每100g的热量，可不填"
+            extra = "kCol"
+            type="number"
           />
         </Form.Item>
 
