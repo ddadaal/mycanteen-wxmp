@@ -15,13 +15,9 @@
   height: 100%;
 }
 
-.filter {
-
-}
-
-.list {
+.selector {
   flex: 1;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .add-new {

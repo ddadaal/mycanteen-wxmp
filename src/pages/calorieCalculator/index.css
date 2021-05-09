@@ -1,0 +1,36 @@
+.content {
+  display: flex;
+  background-color: #F2F2F2;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat .number {
+
+}
+
+.stat .number .value {
+  font-weight: bold;
+}
+
+.stat .number .total {
+
+}
+
+.stat .progress {
+
+}
+
+
+.menu {
+  flex: 2;
+}
+

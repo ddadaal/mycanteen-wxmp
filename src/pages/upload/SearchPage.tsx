@@ -7,13 +7,9 @@ import { CanteenTexts } from "@/models/dish";
 import { apis, Canteen, DishSearchResult } from "@/api/api";
 import { ScrollView } from "remax/wechat";
 import { DishItem } from "../../components/DishItem";
-import { textObjectToArray } from "@/utils/textObjectToArray";
 import { useLoading } from "@/utils/hooks";
+import { DishSelector } from "@/components/DishSelector";
 
-
-const canteenRange=  textObjectToArray(CanteenTexts, "key", "text");
-
-const canteenKeys = Object.keys(CanteenTexts);
 
 interface Props {
   userId: string;
@@ -45,25 +41,6 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
     }
   };
 
-  const onMore = async () => {
-    if (loading || !hasMore.current) {
-      return;
-    }
-    setLoading(true);
-    page.current++;
-    const resp = await apis.searchDishes({
-      name: text,
-      canteen: canteen,
-      page: page.current,
-    });
-    if (resp.dishesItemList.length === 0) {
-      hasMore.current = false;
-    } else {
-      setResults([...results, ...resp.dishesItemList]);
-    }
-    setLoading(false);
-  };
-
   React.useEffect(() => {
     update();
   }, [canteen, text]);
@@ -71,53 +48,16 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
   return (
     <MainLayout>
       <View className={styles.content}>
-        <View className={styles.filter}>
-          <Cell.Picker
-            required
-            label="食堂"
-            placeholder="请选择食堂"
-            arrow
-            range={canteenRange}
-            value={canteen ? canteenKeys.indexOf(canteen) : undefined}
-            onChange={(i: number) => setCanteen(canteenKeys[i] as Canteen)}
-          />
 
-          <Cell.Input
-            label="关键词"
-            placeholder="输入菜品关键词"
-            border={false}
-            value={text}
-            onChange={(e) => {
-              setText(e.target.value);
-            }}
+        <View className={styles.selector}>
+
+          <DishSelector
+            onSearch={() => setSearched(true)}
+            onSelect={(d) => navigateTo({
+              url:
+        `/pages/upload/existing/index?dish=${JSON.stringify(d)}&userId=${userId}`,
+            })}
           />
-        </View>
-        <View className={styles.list}>
-          <ScrollView
-            style={{ height: "100%" }}
-            scrollY
-            onScrollToLower={onMore}
-          >
-            {
-              (results.length > 0)
-                ? (
-                  results.map((x) => (
-                    <DishItem key={x.id} dish={x} onClick={() => {
-                      navigateTo({
-                        url:
-                        `/pages/upload/existing/index?dish=${JSON.stringify(x)}&userId=${userId}`,
-                      });
-                    }}
-                    >
-                        进入评价
-                    </DishItem>
-                  ))
-                )
-                : loading
-                  ? <Loading />
-                  : undefined
-            }
-          </ScrollView>
         </View>
         {
           searched

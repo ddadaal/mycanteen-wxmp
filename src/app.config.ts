@@ -8,6 +8,7 @@ const config: AppConfig = {
     "pages/upload/existing/index",
     "pages/upload/new/index",
     "pages/profile/index",
+    "pages/calorieCalculator/index",
   ],
   window: { navigationBarTitleText: "校园大众点评" },
   "tabBar": {
@@ -25,8 +26,8 @@ const config: AppConfig = {
       "iconPath": "/images/tabbar/upload.png",
       "selectedIconPath": "/images/tabbar/upload-selected.png",
     }, {
-      "text": "个人信息",
-      "pagePath": "pages/profile/index",
+      "text": "热量计算",
+      "pagePath": "pages/calorieCalculator/index",
       "iconPath": "/images/tabbar/profile.png",
       "selectedIconPath": "/images/tabbar/profile.png",
     }],
