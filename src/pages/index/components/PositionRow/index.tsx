@@ -3,7 +3,11 @@ import { Button, Icon, Space } from "annar";
 import React from "react";
 import styles from "./index.css";
 
-export const PositionRow: React.FC = () => {
+interface Props {
+  onRandomClicked: () => void;
+}
+
+export const PositionRow: React.FC<Props> = ({ onRandomClicked }) => {
   return (
     <View className={styles.container}>
       <View className={styles.position}>
@@ -15,9 +19,10 @@ export const PositionRow: React.FC = () => {
       <View>
         <Button
           look="warning"
+          onTap={onRandomClicked}
         >
           <Text>
-            随机
+            Surprise Me
           </Text>
         </Button>
       </View>

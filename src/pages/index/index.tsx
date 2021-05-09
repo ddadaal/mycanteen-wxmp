@@ -12,6 +12,13 @@ import { useLoading } from "@/utils/hooks";
 
 type PagelessQuery = Omit<SearchDishQuery, "page">;
 
+function navigateToDish(dish: DishSearchResult) {
+  wx.navigateTo({
+    url:
+        "/pages/reviews/index?dish=" + JSON.stringify(dish),
+  });
+}
+
 export default () => {
 
   const page = useRef(1);
@@ -50,6 +57,14 @@ export default () => {
     update(query);
   }, []);
 
+  const onRandomClicked = () => {
+    // randomly select one from results
+    const r = Math.random();
+    const i = Math.floor(r * results.length);
+    const dish = results[i];
+    navigateToDish(dish);
+  };
+
 
   return (
     <MainLayout>
@@ -65,7 +80,7 @@ export default () => {
             selected={query.category}
             onSelect={(c) => update({ ...query, category: c.id })}
           />
-          <PositionRow />
+          <PositionRow onRandomClicked={onRandomClicked} />
           <FilterRow
             canteen={query.canteen}
             onCanteenChange={(c) => update({ ...query, canteen: c })}
@@ -89,11 +104,7 @@ export default () => {
               (results.length > 0)
                 ? results.map((x) => (
                   <DishItem key={x.id} dish={x}
-                    onClick={() =>
-                      wx.navigateTo({
-                        url:
-                            "/pages/reviews/index?dish=" + JSON.stringify(x),
-                      })}
+                    onClick={() => navigateToDish(x)}
                   >
                         查看详情
                   </DishItem>
