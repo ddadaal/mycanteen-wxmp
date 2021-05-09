@@ -6,6 +6,10 @@
   margin: 8px;
 }
 
+.selected {
+
+}
+
 .circle {
   background-color: #F2F2F2;
   border-radius: 50%;

@@ -1,3 +1,6 @@
+import type { CategoryId } from "@/components/CategorySelector";
+import { request } from "@remax/wechat";
+
 export enum Flavor {
   Spicy = "Spicy",
   Sour = "Sour",
@@ -17,6 +20,7 @@ export enum Canteen {
 
 
 export interface DishSearchResult {
+  id: number;
   "name": string,
   "price": number,
   "canteen": Canteen,
@@ -26,18 +30,40 @@ export interface DishSearchResult {
   "pictureUrl": string;
 }
 
+export interface SearchDishQuery {
+  name?: string;
+  category?: CategoryId;
+  canteen?: Canteen;
+  price?: number;
+  flavors?: Flavor[];
+  ingredients?: string[];
+  maxCalorie?: number;
+  waitTime?: number;
+  page?: number;
+}
+
+const callCount = 0;
+
+const apiRoot = "http://139.198.171.207:2543";
+
 export const apis = {
-  searchDishes: () => ({
-    results: [
-      {
-        calorie: 32,
-        name: "番茄炒蛋",
-        price: 3,
-        canteen: Canteen.JiaYuan1,
-        rate: 4,
-        rateNumber: 1333,
-        pictureUrl: "/images/dishitem/example.png",
-      },
-    ] as DishSearchResult[],
-  }),
+  searchDishes: async (query: SearchDishQuery) =>  {
+    // return await request({ url: apiRoot + "/dishes/getList" });
+
+    return {
+      results: [
+        {
+          calorie: 32,
+          name: "番茄炒蛋",
+          price: 3,
+          canteen: Canteen.JiaYuan1,
+          rate: 4,
+          rateNumber: 1333,
+          pictureUrl: "/images/dishitem/example.png",
+        },
+      ],
+    };
+
+
+  },
 };
