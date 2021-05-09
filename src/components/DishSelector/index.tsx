@@ -17,7 +17,7 @@ const canteenKeys = Object.keys(CanteenTexts);
 
 interface Props {
   onSelect: (dish: DishSearchResult) => void;
-  onSearch?: () => void;
+  onSearch?: (p: { canteen: Canteen | undefined, text: string }) => void;
   className?: string;
   refreshToken?: boolean;
 }
@@ -41,7 +41,7 @@ export const DishSelector: React.FC<Props> = ({
     if (canteen || text) {
       setResults([]);
       setLoading(true);
-      onSearch?.();
+      onSearch?.({ canteen, text });
       page.current = 1;
       return apis.searchDishes({ name: text, canteen: canteen })
         .then((x) => setResults(x))

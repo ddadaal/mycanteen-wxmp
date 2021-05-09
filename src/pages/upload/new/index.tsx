@@ -23,6 +23,8 @@ export const NewDishPage: React.FC = () => {
 
   const query = useQuery();
 
+  console.log(query);
+
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -68,7 +70,7 @@ export const NewDishPage: React.FC = () => {
       <Form
         form={form}
         onFinish={submit}
-        initialValues={{ description: "", photo: []}}
+        initialValues={{ description: "", photo: [], canteen: query.canteen }}
       >
 
         <Form.Item name="category" rules={[{ required: true }]} required>

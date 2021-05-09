@@ -5,6 +5,7 @@ import styles from "./index.css";
 import { Button } from "annar";
 import { DishSelector } from "@/components/DishSelector";
 import { useRefreshToken } from "@/utils/refreshToken";
+import { Canteen } from "@/api/api";
 
 
 interface Props {
@@ -15,7 +16,10 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
 
 
   const [refreshToken, update] = useRefreshToken();
-  const [searched, setSearched] = React.useState(false);
+  const [searched, setSearched]
+  = React.useState<{ canteen: Canteen | undefined } | undefined>(undefined);
+
+  console.log(searched);
 
 
   return (
@@ -25,7 +29,7 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
         <View className={styles.selector}>
           <DishSelector
             refreshToken={refreshToken}
-            onSearch={() => setSearched(true)}
+            onSearch={(s) => setSearched(s)}
             onSelect={(d) => navigateTo({
               url:
         `/pages/upload/existing/index?dish=${JSON.stringify(d)}&userId=${userId}`,
@@ -43,7 +47,7 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
                   onTap={() => {
                     navigateTo({
                       url:
-                      `/pages/upload/new/index?userId=${userId}`,
+                      `/pages/upload/new/index?userId=${userId}&canteen=${searched.canteen}`,
                     });
                   }}
                 >
