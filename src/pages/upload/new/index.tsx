@@ -49,7 +49,7 @@ export const NewDishPage: React.FC = () => {
         rate: values.rate,
         flavor: values.flavor,
         name: values.name,
-        price: values.price,
+        price: values.price ? values.price * 100 : undefined,
         waitTime: values.waitTime,
         pictureUrls: photoUrls,
         userId: query.userId!,

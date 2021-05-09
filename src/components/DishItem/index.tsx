@@ -39,7 +39,7 @@ export const DishItem: React.FC<Props> = ({ dish, children, onClick }) => {
       </View>
       <View className={styles.info2}>
         <Text className={styles.price}>
-          {dish.price} 元/份
+          {(dish.price / 100).toFixed(2)} 元/份
         </Text>
         <Text className={styles.placeholder}>
         </Text>

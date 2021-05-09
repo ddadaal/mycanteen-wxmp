@@ -78,7 +78,7 @@ const mockDish = {
   id: 1,
   calorie: 32,
   name: "番茄炒蛋",
-  price: 3,
+  price: 300,
   canteen: Canteen.JiaYuan1,
   rate: 4,
   rateNumber: 1333,
