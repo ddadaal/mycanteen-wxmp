@@ -8,9 +8,6 @@ import { apis, DishSearchResult, SearchDishQuery } from "@/api/api";
 import { DishItem } from "../../components/DishItem";
 import { Col, Loading, Result, Row, SearchBar } from "annar";
 import { CategorySelector } from "@/components/CategorySelector";
-import { useAsync } from "react-async";
-import RecycleView from "miniprogram-recycle-view/miniprogram_dist/recycle-view";
-import RecycleItem from "miniprogram-recycle-view/miniprogram_dist/recycle-item";
 import { useLoading } from "@/utils/hooks";
 
 type PagelessQuery = Omit<SearchDishQuery, "page">;
