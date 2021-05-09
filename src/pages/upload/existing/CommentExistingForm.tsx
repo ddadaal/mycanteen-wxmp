@@ -1,8 +1,7 @@
 import { apis, Flavor } from "@/api/api";
-import { FlavorRanges, FlavorTexts } from "@/models/dish";
-import { textObjectToArray } from "@/utils/textObjectToArray";
+import { FlavorRanges } from "@/models/dish";
 import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { View } from "remax/wechat";
 
 interface FormInfo {
@@ -11,6 +10,7 @@ interface FormInfo {
   flavor?: Flavor;
   waitTime?: number;
   price?: number;
+  photo: string[];
 }
 
 interface Props {
@@ -22,26 +22,42 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
 
   const ling = useRef<any>();
 
+  const [loading, setLoading] = useState(false);
 
   const [form] = Form.useForm();
 
   const submit = async () => {
     form.validateFields();
-    const values: FormInfo = form.getFieldsValue();
-    await apis.uploadExistingDish({
-      description: values.description,
-      id: +(dishId!),
-      pictureUrls: [],
-      rate: values.rate,
-      userId: userId!,
-      flavor: values.flavor,
-      price: values.price ? values.price * 100 : undefined,
-      waitTime: values.waitTime,
-    });
+    setLoading(true);
 
-    ling.current!.success("提交成功！", undefined, () => {
-      wx.navigateBack();
-    });
+    const values: FormInfo = form.getFieldsValue();
+
+    try {
+      // upload the photo first
+      const photoUrls = await Promise.all(
+        values.photo.map((p) =>
+          apis.uploadFile(p),
+        )
+      );
+
+      await apis.uploadExistingDish({
+        description: values.description,
+        id: +(dishId!),
+        pictureUrls: photoUrls,
+        rate: values.rate,
+        userId: userId!,
+        flavor: values.flavor,
+        price: values.price ? values.price * 100 : undefined,
+        waitTime: values.waitTime,
+      });
+
+      ling.current!.success("提交成功！", undefined, () => {
+        wx.navigateBack();
+      });
+
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,7 +66,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
       <Form
         form={form}
         onFinish={submit}
-        initialValues={{ description: "" }}
+        initialValues={{ description: "", photo: []}}
       >
         <Form.Item noStyle name="description">
           <Textarea placeholder="请输入评价" />
@@ -111,6 +127,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
             shape="square"
             block
             nativeType="submit"
+            loading={loading}
           >
           提交
           </Button>

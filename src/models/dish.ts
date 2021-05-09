@@ -20,6 +20,8 @@ export const CanteenTexts = {
   NongYuan3: "农园三层",
 };
 
+export const CanteenRanges = textObjectToArray(CanteenTexts, "key", "text");
+
 export const CategoryTexts = {
   Breakfast: "早餐",
   Meal: "正餐",

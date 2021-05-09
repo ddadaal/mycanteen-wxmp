@@ -1,6 +1,7 @@
 import { Categories, Category, CategoryId } from "@/models/dish";
 import { range } from "@/utils/range";
 import { request } from "@remax/wechat";
+import { uploadFile } from "remax/wechat";
 
 export enum Flavor {
   Spicy = "Spicy",
@@ -108,7 +109,7 @@ export const apis = {
     flavor?: Flavor;
     waitTime?: number;
     price?: number;
-    category: Category
+    category: CategoryId;
     canteen: Canteen
     userId: string;
   }) => {
@@ -121,5 +122,19 @@ export const apis = {
     // return jsonRequest("GET", "/reviews", query);
 
     return { results: range(0, 10).map(() => mockReview) };
+  },
+  /** 返回地址 */
+  uploadFile: async (filePath: string): Promise<string> => {
+    // https://pic.onji.cn/
+    const resp = await uploadFile({
+      url: "https://pic.onji.cn/api/toutiao.php",
+      filePath,
+      name: "image",
+    });
+
+    console.log(resp);
+
+    return JSON.parse(resp.data).data.url;
+
   },
 };
