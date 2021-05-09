@@ -110,6 +110,7 @@ const jsonRequest = (method: "GET" | "POST", url: string, data?: object) =>
 
 export const apis = {
   searchDishes: async (query: SearchDishQuery): Promise<DishSearchResult[]> =>  {
+    console.log(query);
     if (MOCK){
       return range(0, 10).map((i) => mockDish(query.page! *10 +i));
     } else {

@@ -95,7 +95,13 @@ export default () => {
           />
           <CategorySelector
             selected={query.category}
-            onSelect={(c) => update({ ...query, category: c.id })}
+            onSelect={(c) => {
+              if (query.category === c.id) {
+                update({ ...query, category: undefined });
+              } else {
+                update({ ...query, category: c.id });
+              }
+            }}
           />
           <PositionRow
             onRandomClicked={onRandomClicked}
@@ -105,11 +111,12 @@ export default () => {
             canteen={query.canteen}
             onCanteenChange={(c) => update({ ...query, canteen: c })}
             flavor={query.flavors?.[0]}
-            onFlavorChange={(f) => update({ ...query, flavors: [f]})}
+            onFlavorChange={(f) => update({ ...query, flavors: f ? [f] : undefined })}
             price={query.minPrice
               ? [query.minPrice, query.maxPrice!] as PriceRange
               : undefined}
-            onPriceChange={(p) => update({ ...query, minPrice: p[0], maxPrice: p[1] })}
+            onPriceChange={(p) =>
+              update({ ...query, minPrice: p ? p[0] : undefined, maxPrice: p ? p[1] : undefined })}
             calorie={query.maxCalorie}
             onCalorieChange={(c) => update({ ...query, maxCalorie: c })}
           />

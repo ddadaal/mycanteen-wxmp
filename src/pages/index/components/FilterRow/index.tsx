@@ -6,6 +6,8 @@ import type { OptionProps } from "annar/esm/selector";
 import React from "react";
 import styles from "./index.css";
 
+export const ALL_KEY = "all";
+
 const objectTextToOptions = (o: object) =>
   Object.entries(o)
     .reduce((prev, curr) => {
@@ -13,9 +15,15 @@ const objectTextToOptions = (o: object) =>
       return prev;
     }, [] as OptionProps[]);
 
-const canteenOptions = objectTextToOptions(CanteenTexts);
+const canteenOptions = [
+  { value: ALL_KEY, text: "全部食堂" },
+  ...objectTextToOptions(CanteenTexts),
+];
 
-const flavorOptions = objectTextToOptions(FlavorTexts);
+const flavorOptions = [
+  { value: ALL_KEY, text: "全部口味" },
+  ...objectTextToOptions(FlavorTexts),
+];
 
 export const priceRanges = [
   [0, 5],
@@ -31,26 +39,30 @@ export type PriceRange = typeof priceRanges[number];
 const priceOptions = priceRanges.reduce((prev, curr) => {
   prev.push({ value: curr[0] + "", text: `${curr[0]}-${curr[1]}` });
   return prev;
-}, [] as OptionProps[]);
+}, [{ value: ALL_KEY, text: "全部价格" }] as OptionProps[]);
 
-const calorieOptions = objectTextToOptions({
-  100: "很少（100 kCal）",
-  200: "少（200 kCal）",
-  300: "正常（300 kCal）",
-  400: "有点多（400 kCal）",
-  500: "多（500 kCal）",
-  10000: "无限",
-});
+const calorieOptions = [
+  { value: ALL_KEY, text: "全部热量" },
+  ...objectTextToOptions({
+    100: "很少（100 kCal）",
+    200: "少（200 kCal）",
+    300: "正常（300 kCal）",
+    400: "有点多（400 kCal）",
+    500: "多（500 kCal）",
+    10000: "无限",
+  }),
+];
+
 
 interface Props {
   canteen?: Canteen;
-  onCanteenChange?: (canteen: Canteen) => void;
+  onCanteenChange?: (canteen: Canteen | undefined) => void;
   flavor?: Flavor;
-  onFlavorChange?: (flavor: Flavor) => void;
+  onFlavorChange?: (flavor: Flavor | undefined) => void;
   price?: PriceRange;
-  onPriceChange?: (priceRange: PriceRange) => void;
+  onPriceChange?: (priceRange: PriceRange | undefined) => void;
   calorie?: number;
-  onCalorieChange?: (c: number) => void;
+  onCalorieChange?: (c: number | undefined) => void;
 }
 
 export const FilterRow: React.FC<Props> = ({
@@ -66,13 +78,16 @@ export const FilterRow: React.FC<Props> = ({
           value={canteen}
           title={"食堂"}
           options={canteenOptions}
-          onChange={(e) => onCanteenChange?.(e.value as Canteen)}
+          onChange={(e) =>
+            onCanteenChange?.(e.value !== ALL_KEY ? e.value as Canteen : undefined)}
         />
         <Filter.Item
           value={flavor}
           title="口味"
           options={flavorOptions}
-          onChange={(e) => onFlavorChange?.(e.value as Flavor)}
+          onChange={(e) => onFlavorChange?.(e.value !== ALL_KEY
+            ? e.value as Flavor
+            : undefined)}
         />
         <Filter.Item
           value={price
@@ -87,7 +102,7 @@ export const FilterRow: React.FC<Props> = ({
           value={calorie + ""}
           title="热量"
           options={calorieOptions}
-          onChange={(e) => onCalorieChange?.(+e.value)}
+          onChange={(e) => onCalorieChange?.(e.value !== ALL_KEY ? +e.value : undefined)}
         />
       </Filter>
     </View>
