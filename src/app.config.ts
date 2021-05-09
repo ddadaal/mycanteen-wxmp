@@ -5,7 +5,7 @@ const config: AppConfig = {
     "pages/index/index",
     "pages/reviews/index",
     "pages/upload/index",
-    "pages/upload/CommentExisting/index",
+    "pages/upload/existing/index",
     "pages/profile/index",
   ],
   window: { navigationBarTitleText: "校园大众点评" },
