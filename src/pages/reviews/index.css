@@ -9,6 +9,10 @@
   flex: 1;
 }
 
+.scroller {
+  height: 100%;
+}
+
 .title-prefix {
   margin: 0 24px;
   background-color: #FFAE00;
