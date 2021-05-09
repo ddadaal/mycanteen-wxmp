@@ -1,4 +1,4 @@
-import { Categories, CategoryId } from "@/models/dish";
+import { Categories, Category, CategoryId } from "@/models/dish";
 import { range } from "@/utils/range";
 import { request } from "@remax/wechat";
 
@@ -99,6 +99,20 @@ export const apis = {
   }) => {
     // ignored
     await jsonRequest("POST", "/dish/existing", body);
+  },
+  uploadNewDish: async (body: {
+    description: string;
+    pictureUrls: string[];
+    name?: string;
+    rate: number;
+    flavor?: Flavor;
+    waitTime?: number;
+    price?: number;
+    category: Category
+    canteen: Canteen
+    userId: string;
+  }) => {
+    await jsonRequest("POST", "/dish/new", body);
   },
   getUserReviews: async (query: {
     dishId: number;

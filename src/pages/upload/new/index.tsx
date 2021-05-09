@@ -1,57 +1,43 @@
-import { apis, Flavor } from "@/api/api";
-import { FlavorRanges, FlavorTexts } from "@/models/dish";
-import { textObjectToArray } from "@/utils/textObjectToArray";
-import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
+import { View } from "@remax/wechat";
 import React, { useRef } from "react";
-import { View } from "remax/wechat";
+import { useQuery } from "remax";
+import styles from "./index.css";
+import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
+import { FlavorRanges } from "@/models/dish";
+import { apis } from "@/api/api";
+import { CategorySelectorWrapper } from "./CategorySelectorWrapper";
 
-interface FormInfo {
-  description: string;
-  rate: number;
-  flavor?: Flavor;
-  waitTime?: number;
-  price?: number;
-}
+export const NewDishPage: React.FC = () => {
 
-interface Props {
-  userId: string;
-  dishId: number;
-}
-
-export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
-
-  const ling = useRef<any>();
-
+  const query = useQuery();
 
   const [form] = Form.useForm();
 
+  const ling = useRef<any>();
+
   const submit = async () => {
     form.validateFields();
-    const values: FormInfo = form.getFieldsValue();
-    await apis.uploadExistingDish({
-      description: values.description,
-      id: +(dishId!),
-      pictureUrls: [],
-      rate: values.rate,
-      userId: userId!,
-      flavor: values.flavor,
-      price: values.price ? values.price * 100 : undefined,
-      waitTime: values.waitTime,
+    const values = form.getFieldsValue();
+    await apis.uploadNewDish({
+      ...values,
+      userId: query.userId!,
     });
-
-    ling.current!.success("提交成功！", undefined, () => {
-      wx.navigateBack();
-    });
+    ling.current!.success("提交成功！");
   };
 
   return (
-    <View>
+    <View className={styles.content}>
       <Ling ref={ling} />
       <Form
         form={form}
         onFinish={submit}
         initialValues={{ description: "" }}
       >
+
+        <Form.Item name="category" rules={[{ required: true }]} required>
+          <CategorySelectorWrapper />
+        </Form.Item>
+
         <Form.Item noStyle name="description">
           <Textarea placeholder="请输入评价" />
         </Form.Item>
@@ -64,13 +50,21 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
           <ImageUpload />
         </Form.Item>
 
+        <Form.Item
+          label="菜名"
+          name="name"
+        >
+          <Cell.Input
+            placeholder="可不填"
+          />
+        </Form.Item>
 
         <Form.Item
           label="价格"
           name="price"
         >
           <Cell.Input
-            placeholder="请输入一份的价格" extra="元"
+            placeholder="一份的价格，课不填" extra="元"
             type="number"
           />
         </Form.Item>
@@ -118,6 +112,6 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
       </Form>
     </View>
   );
-
-
 };
+
+export default NewDishPage;

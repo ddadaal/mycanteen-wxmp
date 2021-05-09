@@ -5,7 +5,7 @@ import React from "react";
 import styles from "./index.css";
 
 const toImageUrl = (id: string) =>
-  `/images/categories/${id}.png`;
+  `/images/categories/${id.toLowerCase()}.png`;
 
 interface Props {
   category: Category;
@@ -21,7 +21,7 @@ export const CategoryButton: React.FC<Props> = ({
   return (
     <View
       className={classnames(styles.container, { [styles.selected]: selected })}
-      onClick={() => onSelect?.(category)}
+      onTap={() => onSelect?.(category)}
     >
       <View className={styles.circle}>
         <Image className={styles.image} src={toImageUrl(category.id)} />

@@ -7,6 +7,8 @@ export const FlavorTexts = {
   Bitter: "苦",
 };
 
+export const FlavorRanges = textObjectToArray(FlavorTexts, "key", "text");
+
 export const CanteenTexts = {
   XueYi : "学一",
   JiaYuan1: "家园1",
@@ -19,7 +21,7 @@ export const CanteenTexts = {
 };
 
 export const CategoryTexts = {
-  BreakPoint: "早餐",
+  Breakfast: "早餐",
   Meal: "正餐",
   Snack: "小吃",
   Drinking: "水吧",

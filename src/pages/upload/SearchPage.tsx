@@ -76,7 +76,7 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
                       <DishItem key={x.id} dish={x} onClick={() => {
                         navigateTo({
                           url:
-                          `/pages/upload/CommentExisting/index?dish=${JSON.stringify(x)}&userId=${userId}`,
+                          `/pages/upload/existing/index?dish=${JSON.stringify(x)}&userId=${userId}`,
                         });
                       }}
                       >
@@ -94,6 +94,12 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
                 <Button
                   block
                   type="primary"
+                  onTap={() => {
+                    navigateTo({
+                      url:
+                      `/pages/upload/new/index?userId=${userId}`,
+                    });
+                  }}
                 >
                   我要添加新菜
                 </Button>

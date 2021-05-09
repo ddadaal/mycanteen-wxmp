@@ -35,7 +35,7 @@ export const ReviewsPage: React.FC = () => {
                 wx.navigateTo({
                   url:
                   // eslint-disable-next-line max-len
-                  `/pages/upload/CommentExisting/index?userId=${x.nickName}&dish=${query.dish}`,
+                  `/pages/upload/existing/index?userId=${x.nickName}&dish=${query.dish}`,
                 });
               });
           }}
