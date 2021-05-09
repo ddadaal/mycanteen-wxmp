@@ -89,7 +89,7 @@ export default () => {
             onScrollToLower={onMore}
           >
             {
-              results
+              (results.length > 0)
                 ? results.map((x) => (
                   <DishItem key={x.id} dish={x}
                     onClick={() =>
