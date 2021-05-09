@@ -30,6 +30,7 @@ export default () => {
 
   const [loading, setLoading] = useLoading();
   const [results, setResults] = React.useState([] as DishSearchResult[]);
+  const [refresherTriggered, setRefresherTriggered] = React.useState(false);
   const hasMore = useRef(true);
 
   const update = async (query: PagelessQuery) => {
@@ -40,6 +41,7 @@ export default () => {
     const resp = await apis.searchDishes({ ...query, page: page.current });
     setResults(resp);
     setLoading(false);
+    setRefresherTriggered(false);
   };
 
   const onMore = async () => {
@@ -103,6 +105,12 @@ export default () => {
             style={{ height: "100%" }}
             scrollY
             onScrollToLower={onMore}
+            refresherEnabled
+            onRefresherRefresh={() => {
+              setRefresherTriggered(true);
+              update(query);
+            }}
+            refresherTriggered={refresherTriggered}
           >
             {
               (results.length > 0)
