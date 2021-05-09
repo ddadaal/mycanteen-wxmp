@@ -2,5 +2,20 @@
   display: flex;
   background-color: #F2F2F2;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
 }
+
+.filter {
+
+}
+
+.list {
+  flex: 1;
+  overflow: scroll;
+}
+
+.add-new {
+  padding: 16px;
+}
+
