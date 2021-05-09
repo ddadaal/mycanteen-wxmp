@@ -30,13 +30,13 @@ const config: AppConfig = {
     }, {
       "text": "热量计算",
       "pagePath": "pages/calorieCalculator/index",
-      "iconPath": "/images/tabbar/profile.png",
-      "selectedIconPath": "/images/tabbar/profile.png",
+      "iconPath": "/images/tabbar/calorie.png",
+      "selectedIconPath": "/images/tabbar/calorie-selected.png",
     }, {
       "text": "食堂人数",
       "pagePath": "pages/canteenStats/index",
-      "iconPath": "/images/tabbar/profile.png",
-      "selectedIconPath": "/images/tabbar/profile.png",
+      "iconPath": "/images/tabbar/stat.png",
+      "selectedIconPath": "/images/tabbar/stat-selected.png",
     }],
   },
 };
