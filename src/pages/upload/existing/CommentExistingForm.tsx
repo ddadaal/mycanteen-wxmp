@@ -69,7 +69,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
         initialValues={{ description: "", photo: []}}
       >
         <Form.Item noStyle name="description">
-          <Textarea placeholder="请输入评价" />
+          <Textarea placeholder="评价" />
         </Form.Item>
 
         <Form.Item
@@ -86,7 +86,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
           name="price"
         >
           <Cell.Input
-            placeholder="请输入一份的价格" extra="元"
+            placeholder="一份的价格，可不填" extra="元"
             type="number"
           />
         </Form.Item>
@@ -96,7 +96,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
           name="flavor"
         >
           <Cell.Picker
-            placeholder="请选择口味"
+            placeholder="口味，可不填"
             range={FlavorRanges}
           />
         </Form.Item>
@@ -107,7 +107,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
         >
           <Cell.Input
             type="number"
-            placeholder="等待时间"
+            placeholder="等待上菜的时间，可不填"
           />
         </Form.Item>
 

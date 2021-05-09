@@ -93,7 +93,7 @@ export const NewDishPage: React.FC = () => {
           rules={[{ required: true }]}
         >
           <Cell.Picker
-            placeholder="请选择食堂"
+            placeholder="菜品所在的食堂"
             range={CanteenRanges}
           />
         </Form.Item>
@@ -103,7 +103,7 @@ export const NewDishPage: React.FC = () => {
           name="name"
         >
           <Cell.Input
-            placeholder="可不填"
+            placeholder="菜名，可不填"
           />
         </Form.Item>
 
@@ -112,7 +112,7 @@ export const NewDishPage: React.FC = () => {
           name="price"
         >
           <Cell.Input
-            placeholder="一份的价格，课不填" extra="元"
+            placeholder="一份的价格，可不填" extra="元"
             type="number"
           />
         </Form.Item>
@@ -122,7 +122,7 @@ export const NewDishPage: React.FC = () => {
           name="flavor"
         >
           <Cell.Picker
-            placeholder="请选择口味"
+            placeholder="口味，可不填"
             range={FlavorRanges}
           />
         </Form.Item>
@@ -133,7 +133,7 @@ export const NewDishPage: React.FC = () => {
         >
           <Cell.Input
             type="number"
-            placeholder="等待时间"
+            placeholder="等待上菜的时间，可不填"
           />
         </Form.Item>
 
