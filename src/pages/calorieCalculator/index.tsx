@@ -30,7 +30,7 @@ export const CalorieCalculator: React.FC = () => {
         </View>
         <View className={styles.progress}>
           <Progress
-            percent={dishes.reduce((prev, curr) => prev+curr.calorie, 0) / total * 100}
+            percent={calorie / total * 100}
           />
         </View>
 
