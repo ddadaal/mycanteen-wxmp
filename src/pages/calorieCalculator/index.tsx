@@ -1,17 +1,33 @@
 import { DishSearchResult } from "@/api/api";
 import { DishItem } from "@/components/DishItem";
+import { getUserProfile, getUserProfileNow } from "@/utils/getUserProfile";
 import { View, Text } from "@remax/wechat";
 import { Button, Progress } from "annar";
 import React, { useState } from "react";
 import styles from "./index.css";
 
-const total = 600;
+const calories = {
+  default: 600,
+  // 未知
+  0: 600,
+  // 男性
+  1: 720,
+  // 女性
+  2: 520,
+};
 
 export const CalorieCalculator: React.FC = () => {
 
   const [dishes, setDishes] = useState<DishSearchResult[]>([]);
 
   const calorie = dishes.reduce((prev, curr) => prev + curr.calorie, 0);
+
+  const [profile, setProfile] = useState(getUserProfileNow());
+
+  const total =
+    profile
+      ? calories[profile.gender]
+      : calories.default;
 
   return (
     <View className={styles.content}>
@@ -31,8 +47,23 @@ export const CalorieCalculator: React.FC = () => {
         <View className={styles.progress}>
           <Progress
             percent={calorie / total * 100}
+            bgColor="#9E9E9E"
           />
         </View>
+
+        {
+          profile ? undefined
+            : (
+              <View className={styles.authorize}>
+                <Button onTap={() => {
+                  getUserProfile().then((x) => setProfile(x));
+                }} ghost
+                >
+                  授权以获得更精确的推荐热量
+                </Button>
+              </View>
+            )
+        }
 
       </View>
       <View className={styles.menu}>

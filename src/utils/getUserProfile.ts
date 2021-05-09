@@ -15,3 +15,5 @@ export const getUserProfile = () => {
     }
   });
 };
+
+export const getUserProfileNow = () => userInfo;

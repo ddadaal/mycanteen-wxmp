@@ -192,7 +192,7 @@ export const apis = {
         ],
       };
     } else {
-      return jsonRequest("GET", "/canteenStats");
+      return jsonRequest("GET", "/canteen/status");
     }
   },
 };
