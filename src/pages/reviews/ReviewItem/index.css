@@ -43,8 +43,12 @@
   flex: 1;
 }
 
-.info .rate {
+.info .rate  {
   flex: 1;
+}
+
+.info .rate :global(.anna-rate-value-star) {
+  margin-right: 8px;
 }
 
 .info .misc {

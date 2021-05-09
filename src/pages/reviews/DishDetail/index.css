@@ -1,0 +1,15 @@
+.row {
+  display: flex;
+  align-items: center;
+  margin: 8px;
+}
+
+.icon {
+  width: 31px;
+  height: 38px;
+  padding: 16px;
+}
+
+.text {
+  color: #8C8C8C;
+}

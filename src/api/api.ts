@@ -30,6 +30,8 @@ export interface DishSearchResult {
   "rate": number;
   "rateNumber": number,
   "pictureUrl": string;
+  "flavor": Flavor;
+  avgWaitTime: number;
 }
 
 export interface SearchDishQuery {
@@ -83,7 +85,9 @@ const mockDish = (id: number) => ({
   rate: 4,
   rateNumber: 1333,
   pictureUrl: "/images/dishitem/example.png",
-});
+  flavor: Flavor.Bitter,
+  avgWaitTime: 14.3,
+} as DishSearchResult);
 
 const jsonRequest = (method: "GET" | "POST", url: string, data?: object) =>
   request({ method, url: apiRoot + url, data })
