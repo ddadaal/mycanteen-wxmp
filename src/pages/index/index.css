@@ -4,3 +4,9 @@
   flex-direction: column;
   height: 100%;
 }
+
+.filters {
+  background-color: white;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+}
