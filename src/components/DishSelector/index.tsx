@@ -38,7 +38,7 @@ export const DishSelector: React.FC<Props> = ({
   const [loading, setLoading] = useLoading();
 
   const update = async () => {
-    if (canteen && text) {
+    if (canteen || text) {
       setResults([]);
       setLoading(true);
       onSearch?.();

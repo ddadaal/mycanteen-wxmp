@@ -9,8 +9,12 @@
 .stat {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.stat .title {
 }
 
 .stat .number {
@@ -26,11 +30,12 @@
 }
 
 .stat .progress {
-
+  height: 32px;
 }
 
 
 .menu {
   flex: 2;
+  overflow: auto;
 }
 

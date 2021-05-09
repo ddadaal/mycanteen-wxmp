@@ -16,6 +16,9 @@ export const CalorieCalculator: React.FC = () => {
   return (
     <View className={styles.content}>
       <View className={styles.stat}>
+        <View className={styles.title}>
+          消耗热量 / 推荐热量
+        </View>
         <View className={styles.number}>
           <Text className={styles.value}>
             {calorie}
@@ -41,7 +44,9 @@ export const CalorieCalculator: React.FC = () => {
             dishes.map((x) => (
               <DishItem dish={x} key={x.dishId}
                 onClick={() => setDishes(dishes.filter((x) => x.dishId !== x.dishId))}
-              />
+              >
+                点击删除
+              </DishItem>
             ))
           }
         </View>
