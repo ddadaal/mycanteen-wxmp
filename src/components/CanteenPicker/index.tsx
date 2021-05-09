@@ -16,7 +16,7 @@ export const CanteenPicker: React.FC<Props> = ({
   placeholder,
   label,
 }) => {
-  console.log(value, CanteenRanges);
+  console.log(value, CanteenRanges.findIndex((x) => x.key === value));
   return (
     <Cell.Picker
       placeholder={placeholder}

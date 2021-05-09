@@ -6,10 +6,11 @@ import { FilterRow, PriceRange } from "./components/FilterRow";
 import { PositionRow } from "./components/PositionRow";
 import { apis, DishSearchResult, SearchDishQuery } from "@/api/api";
 import { DishItem } from "../../components/DishItem";
-import { Col, Loading, Result, Row, SearchBar } from "annar";
+import { Loading, SearchBar } from "annar";
 import { CategorySelector } from "@/components/CategorySelector";
 import { useLoading } from "@/utils/hooks";
-import { globals, readAndClearGlobal } from "@/utils/globals";
+import { readAndClearGlobal } from "@/utils/globals";
+import { usePageEvent } from "remax/macro";
 
 type PagelessQuery = Omit<SearchDishQuery, "page">;
 
@@ -30,6 +31,7 @@ export default () => {
   const [query, setQuery] =
   React.useState({ canteen: readAndClearGlobal("indexPageCanteen") } as PagelessQuery);
 
+
   const [loading, setLoading] = useLoading();
   const [results, setResults] = React.useState([] as DishSearchResult[]);
   const [refresherTriggered, setRefresherTriggered] = React.useState(false);
@@ -45,6 +47,13 @@ export default () => {
     setLoading(false);
     setRefresherTriggered(false);
   };
+
+  usePageEvent("onShow", () => {
+    const value = readAndClearGlobal("indexPageCanteen");
+    if (value) {
+      update({ canteen: value });
+    }
+  });
 
   const onMore = async () => {
     if (loading || !hasMore.current) {
