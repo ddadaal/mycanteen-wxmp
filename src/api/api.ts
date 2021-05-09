@@ -35,7 +35,8 @@ export interface SearchDishQuery {
   name?: string;
   category?: CategoryId;
   canteen?: Canteen;
-  price?: number;
+  minPrice?: number;
+  maxPrice?: number;
   flavors?: Flavor[];
   ingredients?: string[];
   maxCalorie?: number;

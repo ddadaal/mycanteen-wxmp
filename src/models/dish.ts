@@ -14,5 +14,4 @@ export const CanteenTexts = {
   NongYuan1: "农园一层",
   NongYuan2: "农园二层",
   NongYuan3: "农园三层",
-
 };

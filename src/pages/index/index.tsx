@@ -2,7 +2,7 @@ import * as React from "react";
 import { MainLayout } from "@/layouts/MainLayout";
 import { ScrollView, View } from "@remax/wechat";
 import styles from "./index.css";
-import { FilterRow } from "./components/FilterRow";
+import { FilterRow, PriceRange } from "./components/FilterRow";
 import { PositionRow } from "./components/PositionRow";
 import { apis, SearchDishQuery } from "@/api/api";
 import { DishItem } from "./components/DishItem";
@@ -38,7 +38,18 @@ export default () => {
             onSelect={(c) => setQuery({ ...query, category: c.id })}
           />
           <PositionRow />
-          <FilterRow />
+          <FilterRow
+            canteen={query.canteen}
+            onCanteenChange={(c) => setQuery({ ...query, canteen: c })}
+            flavor={query.flavors?.[0]}
+            onFlavorChange={(f) => setQuery({ ...query, flavors: [f]})}
+            price={query.minPrice
+              ? [query.minPrice, query.maxPrice!] as PriceRange
+              : undefined}
+            onPriceChange={(p) => setQuery({ ...query, minPrice: p[0], maxPrice: p[1] })}
+            calorie={query.maxCalorie}
+            onCalorieChange={(c) => setQuery({ ...query, maxCalorie: c })}
+          />
         </View>
         <View className={styles["dishes-list"]}>
           <ScrollView style={{ height: "100%" }} scrollY>
