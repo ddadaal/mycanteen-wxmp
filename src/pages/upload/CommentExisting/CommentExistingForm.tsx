@@ -1,7 +1,6 @@
 import { apis, Flavor } from "@/api/api";
 import { FlavorTexts } from "@/models/dish";
 import { textObjectToArray } from "@/utils/textObjectToArray";
-import { useQuery } from "remax";
 import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
 import React, { useRef } from "react";
 import { View } from "remax/wechat";
@@ -16,13 +15,15 @@ interface FormInfo {
 
 const flavorRanges = textObjectToArray(FlavorTexts, "key", "text");
 
-console.log(flavorRanges);
+interface Props {
+  userId: string;
+  dishId: number;
+}
 
-export const CommentExistingForm: React.FC = () => {
+export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
 
   const ling = useRef<any>();
 
-  const { userId, dishId } = useQuery();
 
   const [form] = Form.useForm();
 

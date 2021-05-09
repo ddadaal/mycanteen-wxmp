@@ -19,7 +19,7 @@ interface Props {
   userId: string;
 }
 
-export const SearchPage: React.FC<Props> = () => {
+export const SearchPage: React.FC<Props> = ({ userId }) => {
 
   const [canteen, setCanteen] = React.useState<Canteen | undefined>(undefined);
   const [text, setText] = React.useState("");
@@ -76,7 +76,7 @@ export const SearchPage: React.FC<Props> = () => {
                       <DishItem key={x.id} dish={x} onClick={() => {
                         navigateTo({
                           url:
-                          `/pages/upload/CommentExisting/index?dish=${JSON.stringify(x)}`,
+                          `/pages/upload/CommentExisting/index?dish=${JSON.stringify(x)}&userId=${userId}`,
                         });
                       }}
                       >

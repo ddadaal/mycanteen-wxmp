@@ -1,3 +1,4 @@
+import { getUserProfile } from "@/utils/getUserProfile";
 import { View, Text } from "@remax/wechat";
 import React, { useEffect, useState } from "react";
 import styles from "./index.css";
@@ -15,16 +16,13 @@ export default () => {
 
 
   useEffect(() => {
-    wx.getUserProfile({
-      desc: "用于上传用户评价",
-      success: (res) => {
-        console.log(res);
+    getUserProfile()
+      .then((x) => {
         setChildren(
-          <SearchPage userId={res.userInfo.nickName} />
+          <SearchPage userId={x.nickName} />
         );
-      },
-    });
-  });
+      });
+  }, []);
 
   return children;
 };

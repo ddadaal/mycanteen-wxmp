@@ -59,7 +59,13 @@ export default () => {
                 : data
                   ? (
                     data.map((x) => (
-                      <DishItem key={x.id} dish={x}>
+                      <DishItem key={x.id} dish={x}
+                        onClick={() =>
+                          wx.navigateTo({
+                            url:
+                            "/pages/reviews/index?dish=" + JSON.stringify(x),
+                          })}
+                      >
                         查看详情
                       </DishItem>
                     ))

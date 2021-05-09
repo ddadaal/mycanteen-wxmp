@@ -3,6 +3,7 @@ import { AppConfig } from "remax/wechat";
 const config: AppConfig = {
   pages: [
     "pages/index/index",
+    "pages/reviews/index",
     "pages/upload/index",
     "pages/upload/CommentExisting/index",
     "pages/profile/index",

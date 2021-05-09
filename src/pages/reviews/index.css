@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.title {
+  padding: 16px;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.list {
+  flex: 1;
+  overflow: scroll;
+}
+
+.comment {
+  padding: 16px;
+}
+
+
