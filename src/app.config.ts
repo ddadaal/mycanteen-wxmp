@@ -9,6 +9,7 @@ const config: AppConfig = {
     "pages/upload/new/index",
     "pages/profile/index",
     "pages/calorieCalculator/index",
+    "pages/calorieCalculator/DishSelector",
   ],
   window: { navigationBarTitleText: "校园大众点评" },
   "tabBar": {

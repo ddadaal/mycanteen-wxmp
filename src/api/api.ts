@@ -74,7 +74,6 @@ const mockReview = (id: number) => ({
 });
 
 
-
 const apiRoot = "http://139.198.171.207:2543";
 
 // const MOCK = true;
@@ -157,7 +156,7 @@ export const apis = {
     if (MOCK) {
       return mockDish(+id);
     } else {
-      return jsonRequest("GET", "/dish", { dishId: id }).then((x) => x.dish);
+      return jsonRequest("GET", "/dishes/getOne", { dishId: id }).then((x) => x);
     }
   },
 };

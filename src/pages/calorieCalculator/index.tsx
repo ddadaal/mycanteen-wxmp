@@ -39,13 +39,19 @@ export const CalorieCalculator: React.FC = () => {
         <View className={styles.list}>
           {
             dishes.map((x) => (
-              <DishItem dish={x} key={x.dishId} />
+              <DishItem dish={x} key={x.dishId}
+                onClick={() => setDishes(dishes.filter((x) => x.dishId !== x.dishId))}
+              />
             ))
           }
         </View>
         <Button
           block
           type="primary"
+          onTap={() => wx.navigateTo({
+            url: "/pages/calorieCalculator/DishSelector",
+            events: { dishSelected: (d) => setDishes([...dishes, d]) },
+          }) }
         >
           添加新菜品
         </Button>
