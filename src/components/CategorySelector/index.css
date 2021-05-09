@@ -6,8 +6,12 @@
   margin: 8px;
 }
 
-.selected {
+.selected .circle {
+  border: 8px solid #F7B84B;
+}
 
+.selected .text {
+  color: #F7B84B;
 }
 
 .circle {
