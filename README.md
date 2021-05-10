@@ -1,8 +1,10 @@
-# Remax Wechat With TypeScript
+# MyCanteen 微信小程序
 
-使用 Remax 开发微信小程序。
+使用 Remax 开发的校内大众点评小程序。
 
-## Getting Start
+![图片](./image.png)
+
+## Getting Started
 
 安装依赖
 
