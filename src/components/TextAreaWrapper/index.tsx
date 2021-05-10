@@ -11,7 +11,9 @@ export const TextAreaWrapper: React.FC<Props> = ({ value, onChange, ...rest }) =
   return (
     <Textarea
       value={value}
-      onInput={(e) => onChange?.((e.target as any).value)}
+      onInput={(e) => {
+        onChange?.(e.detail.value);
+      }}
       {...rest}
     />
   );
