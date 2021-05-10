@@ -31,6 +31,8 @@ export const DishSelector: React.FC<Props> = ({
 
   const [loading, setLoading] = useLoading();
 
+  const [refresherTriggered, setRefresherTriggered] = React.useState(false);
+
   const update = async () => {
     if (canteen || text) {
       setResults([]);
@@ -39,7 +41,10 @@ export const DishSelector: React.FC<Props> = ({
       page.current = 1;
       return apis.searchDishes({ name: text, canteen: canteen })
         .then((x) => setResults(x))
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+          setRefresherTriggered(false);
+        });
     }
   };
 
@@ -61,6 +66,7 @@ export const DishSelector: React.FC<Props> = ({
     }
     setLoading(false);
   };
+
 
   React.useEffect(() => {
     update();
@@ -92,6 +98,12 @@ export const DishSelector: React.FC<Props> = ({
           style={{ height: "100%" }}
           scrollY
           onScrollToLower={onMore}
+          refresherEnabled
+          onRefresherRefresh={() => {
+            setRefresherTriggered(true);
+            update();
+          }}
+          refresherTriggered={refresherTriggered}
         >
           {
             (results.length > 0)
