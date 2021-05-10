@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import { View } from "remax/wechat";
 import { useEventChannel } from "@/utils/useEventChannel";
 import { TextAreaWrapper } from "@/components/TextAreaWrapper";
+import { CellPicker } from "@/components/CellPicker";
 
 interface FormInfo {
   description: string;
@@ -93,6 +94,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
           <Cell.Input
             placeholder="一份的价格，可不填" extra="元"
             type="number"
+            align="right"
           />
         </Form.Item>
 
@@ -100,7 +102,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
           label="口味"
           name="flavor"
         >
-          <Cell.Picker
+          <CellPicker
             placeholder="口味，可不填"
             range={FlavorRanges}
           />
@@ -113,6 +115,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
           <Cell.Input
             type="number"
             placeholder="等待上菜的时间，可不填"
+            align="right"
           />
         </Form.Item>
 

@@ -1,7 +1,7 @@
 import { Canteen } from "@/api/api";
 import { CanteenRanges } from "@/models/dish";
-import { Cell } from "annar";
 import React from "react";
+import { CellPicker } from "../CellPicker";
 
 interface Props {
   value?: Canteen;
@@ -10,20 +10,21 @@ interface Props {
   label?: string;
 }
 
+
 export const CanteenPicker: React.FC<Props> = ({
   value,
   onChange,
   placeholder,
   label,
 }) => {
-  console.log(value, CanteenRanges.findIndex((x) => x.key === value));
   return (
-    <Cell.Picker
-      placeholder={placeholder}
-      label={label}
+    <CellPicker
       range={CanteenRanges}
-      value={CanteenRanges.findIndex((x) => x.key === value)}
-      onChange={(v) => onChange?.(CanteenRanges[v].key as Canteen)}
+      label={label}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
     />
+
   );
 };

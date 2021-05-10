@@ -7,7 +7,8 @@ export const FlavorTexts = {
   Bitter: "苦",
 };
 
-export const FlavorRanges = textObjectToArray(FlavorTexts, "key", "text");
+export const FlavorRanges: { id : keyof typeof FlavorTexts, text: string}[]
+= textObjectToArray(FlavorTexts, "id", "text") as any;
 
 export const CanteenTexts = {
   XueYi : "学一食堂",
@@ -20,8 +21,8 @@ export const CanteenTexts = {
   NongYuan3: "农园三层",
 };
 
-export const CanteenRanges: { key: keyof typeof CanteenTexts, text: string }[]
-= textObjectToArray(CanteenTexts, "key", "text") as any;
+export const CanteenRanges: { id: keyof typeof CanteenTexts, text: string }[]
+= textObjectToArray(CanteenTexts, "id", "text") as any;
 
 export const CategoryTexts = {
   Breakfast: "早餐",

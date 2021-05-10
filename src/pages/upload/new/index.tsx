@@ -8,6 +8,7 @@ import { apis, Canteen, Flavor } from "@/api/api";
 import { CategorySelectorWrapper } from "./CategorySelectorWrapper";
 import { CanteenPicker } from "@/components/CanteenPicker";
 import { TextAreaWrapper } from "@/components/TextAreaWrapper";
+import { CellPicker } from "@/components/CellPicker";
 
 interface FormInfo {
   canteen: Canteen;
@@ -107,6 +108,7 @@ export const NewDishPage: React.FC = () => {
         >
           <Cell.Input
             placeholder="菜名，可不填"
+            align="right"
           />
         </Form.Item>
 
@@ -118,6 +120,7 @@ export const NewDishPage: React.FC = () => {
             placeholder="每100g的热量，可不填"
             extra = "kCol"
             type="number"
+            align="right"
           />
         </Form.Item>
 
@@ -128,6 +131,7 @@ export const NewDishPage: React.FC = () => {
           <Cell.Input
             placeholder="一份的价格，可不填" extra="元"
             type="number"
+            align="right"
           />
         </Form.Item>
 
@@ -135,9 +139,10 @@ export const NewDishPage: React.FC = () => {
           label="口味"
           name="flavor"
         >
-          <Cell.Picker
+          <CellPicker
             placeholder="口味，可不填"
             range={FlavorRanges}
+
           />
         </Form.Item>
 
@@ -148,6 +153,7 @@ export const NewDishPage: React.FC = () => {
           <Cell.Input
             type="number"
             placeholder="等待上菜的时间，可不填"
+            align="right"
           />
         </Form.Item>
 

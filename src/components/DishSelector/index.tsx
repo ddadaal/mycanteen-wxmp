@@ -1,13 +1,10 @@
 import * as React from "react";
-import { MainLayout } from "@/layouts/MainLayout";
-import { navigateTo, View } from "@remax/wechat";
+import { View } from "@remax/wechat";
 import styles from "./index.css";
-import { Button, Cell, Loading } from "annar";
-import { CanteenTexts } from "@/models/dish";
+import { Cell, Loading } from "annar";
 import { apis, Canteen, DishSearchResult } from "@/api/api";
 import { ScrollView } from "remax/wechat";
 import { DishItem } from "../DishItem";
-import { textObjectToArray } from "@/utils/textObjectToArray";
 import { useLoading } from "@/utils/hooks";
 import classnames from "classnames";
 import { CanteenPicker } from "../CanteenPicker";
@@ -82,6 +79,7 @@ export const DishSelector: React.FC<Props> = ({
         <Cell.Input
           label="关键词"
           placeholder="输入菜品关键词"
+          align="right"
           border={false}
           value={text}
           onChange={(e) => {
