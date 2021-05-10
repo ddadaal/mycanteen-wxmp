@@ -1,6 +1,6 @@
 import { View } from "@remax/wechat";
 import React, { useRef, useState } from "react";
-import { useQuery } from "remax";
+import { useNativeEffect, useQuery } from "remax";
 import styles from "./index.css";
 import { Button, Cell, Form, ImageUpload, Ling, Rate } from "annar";
 import { CategoryId, FlavorRanges } from "@/models/dish";
@@ -78,13 +78,17 @@ export const NewDishPage: React.FC = () => {
     }
   };
 
+  useNativeEffect(() => {
+    form.resetFields();
+  }, []);
+
   return (
     <View className={styles.content}>
       <Ling ref={ling} />
       <Form
         form={form}
         onFinish={submit}
-        initialValues={{ description: "ts", photo: [], canteen: query.canteen }}
+        initialValues={{ description: "", photo: [], canteen: query.canteen }}
       >
 
         <Form.Item name="category" rules={[{ required: true }]} required>
