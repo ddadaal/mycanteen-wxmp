@@ -1,10 +1,10 @@
 import { apis, Flavor } from "@/api/api";
 import { FlavorRanges } from "@/models/dish";
-import { usePageInstance } from "remax";
-import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
+import { Button, Cell, Form, ImageUpload, Ling, Rate } from "annar";
 import React, { useRef, useState } from "react";
 import { View } from "remax/wechat";
 import { useEventChannel } from "@/utils/useEventChannel";
+import { TextAreaWrapper } from "@/components/TextAreaWrapper";
 
 interface FormInfo {
   description: string;
@@ -74,7 +74,7 @@ export const CommentExistingForm: React.FC<Props> = ({ userId, dishId }) => {
         initialValues={{ description: "", photo: []}}
       >
         <Form.Item noStyle name="description">
-          <Textarea placeholder="评价" />
+          <TextAreaWrapper placeholder="评价" />
         </Form.Item>
 
         <Form.Item

@@ -2,11 +2,12 @@ import { View } from "@remax/wechat";
 import React, { useRef, useState } from "react";
 import { useQuery } from "remax";
 import styles from "./index.css";
-import { Button, Cell, Form, ImageUpload, Ling, Rate, Textarea } from "annar";
-import { CanteenRanges, CategoryId, FlavorRanges } from "@/models/dish";
+import { Button, Cell, Form, ImageUpload, Ling, Rate } from "annar";
+import { CategoryId, FlavorRanges } from "@/models/dish";
 import { apis, Canteen, Flavor } from "@/api/api";
 import { CategorySelectorWrapper } from "./CategorySelectorWrapper";
 import { CanteenPicker } from "@/components/CanteenPicker";
+import { TextAreaWrapper } from "@/components/TextAreaWrapper";
 
 interface FormInfo {
   canteen: Canteen;
@@ -81,7 +82,7 @@ export const NewDishPage: React.FC = () => {
         </Form.Item>
 
         <Form.Item noStyle name="description">
-          <Textarea placeholder="请输入评价" />
+          <TextAreaWrapper placeholder="请输入评价" />
         </Form.Item>
 
         <Form.Item
