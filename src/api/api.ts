@@ -76,8 +76,8 @@ const mockReview = (id: number) => ({
 
 const apiRoot = "http://139.198.171.207:2543";
 
-const MOCK = true;
-// const MOCK = false;
+// const MOCK = true;
+const MOCK = false;
 
 const mockDish = (id: number) => ({
   dishId: id + "",
@@ -104,9 +104,23 @@ export interface CanteenStats {
   rows: CanteenStat[];
 }
 
-const jsonRequest = (method: "GET" | "POST", url: string, data?: object) =>
-  request({ method, url: apiRoot + url, data })
+export function removeNullOrUndefinedKey<T extends object>(object: T): T {
+  for (const key in object) {
+    if (object[key] === undefined || object[key] === null) {
+      delete object[key];
+    }
+  }
+  return object;
+}
+
+const jsonRequest = (method: "GET" | "POST", url: string, data?: object) => {
+
+  const cleared = data ? removeNullOrUndefinedKey(data) : undefined;
+
+  return request({ method, url: apiRoot + url, data: cleared })
     .then((x) => x.data.results);
+};
+
 
 export const apis = {
   searchDishes: async (query: SearchDishQuery): Promise<DishSearchResult[]> =>  {
