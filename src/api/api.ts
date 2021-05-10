@@ -152,9 +152,11 @@ export const apis = {
     canteen: Canteen
     userId: string;
     calorie?: number;
-  }) => {
+  }): Promise<{ dishId: string }> => {
     if (!MOCK) {
-      await jsonRequest("POST", "/dish/new", body);
+      return await jsonRequest("POST", "/dish/new", body);
+    } else {
+      return { dishId: "123" };
     }
   },
   getUserReviews: async (query: {

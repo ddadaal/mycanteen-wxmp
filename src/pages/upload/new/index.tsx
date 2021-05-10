@@ -48,7 +48,7 @@ export const NewDishPage: React.FC = () => {
         )
       );
 
-      await apis.uploadNewDish({
+      const resp = await apis.uploadNewDish({
         canteen: values.canteen,
         category: values.category,
         description: values.description,
@@ -62,7 +62,16 @@ export const NewDishPage: React.FC = () => {
         calorie: values.calorie,
       });
 
-      ling.current!.success("提交成功！");
+      ling.current!.success("提交成功！", 1000, () => {
+        apis.getDishById(resp.dishId).then((dish) => {
+          wx.redirectTo({
+            url:
+            "/pages/reviews/index?dish=" + JSON.stringify(dish),
+          });
+        });
+      });
+
+
 
     } finally {
       setLoading(false);

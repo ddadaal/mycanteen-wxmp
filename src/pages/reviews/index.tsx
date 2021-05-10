@@ -17,7 +17,6 @@ export const ReviewFirstPage: React.FC = () => {
 
   const eventHandler = useEventChannel();
 
-
   const reload = async () => {
     setLoading(true);
     await apis.getDishById(dish.dishId)
