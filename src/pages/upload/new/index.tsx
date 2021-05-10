@@ -187,6 +187,7 @@ export const NewDishPage: React.FC = () => {
             block
             nativeType="submit"
             loading={loading}
+            look="warning"
           >
           提交
           </Button>

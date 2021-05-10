@@ -60,6 +60,7 @@ export const CanteenStatsPage: React.FC = () => {
                   </View>
                   <View className={styles.progress}>
                     <Progress
+                      color="#FFAE00"
                       percent={x.ip / x.seat * 100}
                     />
                   </View>

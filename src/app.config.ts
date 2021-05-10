@@ -15,7 +15,7 @@ const config: AppConfig = {
   window: { navigationBarTitleText: "校园大众点评" },
   "tabBar": {
     "color": "#000000",
-    "selectedColor": "#000000",
+    "selectedColor": "#E59160",
     "backgroundColor": "#ffffff",
     "list": [{
       "text": "主页",

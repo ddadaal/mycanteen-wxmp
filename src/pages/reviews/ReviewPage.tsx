@@ -108,6 +108,7 @@ export const ReviewPage: React.FC<Props> = ({ dish, reloadDish }) => {
       <View className={styles.comment}>
         <Button
           block
+          look="warning"
           type="primary"
           onTap={() => {
             getUserProfile()

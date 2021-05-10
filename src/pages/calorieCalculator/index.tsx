@@ -48,6 +48,7 @@ export const CalorieCalculator: React.FC = () => {
           <Progress
             percent={calorie / total * 100}
             bgColor="#9E9E9E"
+            color="#FFAE00"
           />
         </View>
 
@@ -58,6 +59,7 @@ export const CalorieCalculator: React.FC = () => {
                 <Button onTap={() => {
                   getUserProfile().then((x) => setProfile(x));
                 }} ghost
+                color="black"
                 >
                   授权以获得更精确的推荐热量
                 </Button>
@@ -83,6 +85,7 @@ export const CalorieCalculator: React.FC = () => {
         </View>
         <Button
           block
+          look="warning"
           type="primary"
           onTap={() => wx.navigateTo({
             url: "/pages/calorieCalculator/DishSelector",

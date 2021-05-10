@@ -19,9 +19,6 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
   const [searched, setSearched]
   = React.useState<{ canteen: Canteen | undefined } | undefined>(undefined);
 
-  console.log(searched);
-
-
   return (
     <MainLayout>
       <View className={styles.content}>
@@ -44,6 +41,7 @@ export const SearchPage: React.FC<Props> = ({ userId }) => {
                 <Button
                   block
                   type="primary"
+                  look="warning"
                   onTap={() => {
                     navigateTo({
                       url:
