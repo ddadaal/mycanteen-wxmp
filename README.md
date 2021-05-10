@@ -1,5 +1,7 @@
 # MyCanteen 微信小程序
 
+用于2021年HackPKU的项目。
+
 使用 Remax 开发的校内大众点评小程序。
 
 ![图片](./image.png)
