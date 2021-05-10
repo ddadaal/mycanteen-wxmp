@@ -23,7 +23,7 @@ export const DishDetailBlock: React.FC<Props> = ({ dish }) => {
         {CanteenTexts[dish.canteen]}
       </Row>
       <Row iconLink="price">
-        {dish.price} 元
+        {(dish.price / 100).toFixed(2)} 元
       </Row>
       <Row iconLink="calorie">
         约 {dish.calorie} kCal/100g
