@@ -1,13 +1,17 @@
 .content {
   display: flex;
-  background-color: #F2F2F2;
+  background-color: #FFFFFF;
   flex-direction: column;
   height: 100%;
   padding: 16px;
 }
 
 .pagetitle {
+  padding-top: 30px;
+  padding-left: 20px;
   padding-bottom: 32px;
+  font-size: 48px;
+  font-weight: bold;
 }
 
 .pagetitle:before {
@@ -15,7 +19,7 @@
   content: "";
   width: 16px;
   height: 42px;
-  border-radius: 4px;
+  border-radius: 10px;
   display: inline-block;
   margin: 0 16px;
 }
@@ -23,6 +27,7 @@
 .stat {
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 
 

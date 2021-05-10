@@ -11,6 +11,14 @@
   border-bottom-right-radius: 32px;
 }
 
+.content .filters {
+  padding-top: 30px;
+}
+
+.content .filters > view {
+  
+}
+
 .dishes-list {
   flex: 1;
   overflow: scroll;
