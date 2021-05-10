@@ -40,8 +40,10 @@ export const CanteenStatsPage: React.FC = () => {
               return (
                 <View key={x.name} className={styles.stat}
                   onClick={() => {
-                    setGlobal("indexPageCanteen", canteen);
-                    wx.switchTab({ url: "/pages/index/index" });
+                    if (canteen) {
+                      setGlobal("indexPageCanteen", canteen);
+                      wx.switchTab({ url: "/pages/index/index" });
+                    }
                   }}
                 >
                   <View className={styles.titlerow}>
